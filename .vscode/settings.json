@@ -1,0 +1,33 @@
+{
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": [],
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false
+  },
+  "[json]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": []
+  },
+  "[css]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": []
+  },
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSaveMode": "none",
+  "vs-code-prettier-eslint.prettierLast": false,
+  "editor.defaultFormatter": null,
+  "chat.tools.terminal.autoApprove": {
+    "code": true
+  },
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  }
+}

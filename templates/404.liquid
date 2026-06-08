@@ -1,0 +1,392 @@
+{%- assign page_404_title = 'Không tìm thấy trang' -%}
+{%- assign page_404_subtext = 'Xin lỗi, Chúng tôi không tìm thấy trang này.' -%}
+{%- assign page_404_search_placeholder = 'Tìm kiếm theo từ khoá' -%}
+{%- assign page_404_search_label = 'Tìm kiếm' -%}
+{%- assign page_404_back_home = 'Trở về trang chủ' -%}
+{%- assign page_404_view_products = 'Xem sản phẩm' -%}
+{%- assign page_404_hint = 'Hoặc liên hệ hỗ trợ nếu bạn nghĩ đây là lỗi hệ thống.' -%}
+
+<section class="page-404" aria-labelledby="page-404-title">
+  <div class="page-404__bg" aria-hidden="true">
+    <span class="page-404__orb page-404__orb--1"></span>
+    <span class="page-404__orb page-404__orb--2"></span>
+    <span class="page-404__orb page-404__orb--3"></span>
+  </div>
+
+  <div class="page-404__inner">
+    <div class="page-404__visual" aria-hidden="true">
+      <span class="page-404__code">4</span>
+      <span class="page-404__face">
+        <span class="page-404__eye"></span>
+        <span class="page-404__eye"></span>
+        <span class="page-404__mouth"></span>
+      </span>
+      <span class="page-404__code">4</span>
+    </div>
+
+    <p class="page-404__badge">404</p>
+    <h1 id="page-404-title" class="page-404__title">{{ page_404_title }}</h1>
+    <p class="page-404__subtext">{{ page_404_subtext }}</p>
+
+    <form class="page-404__search" action="/search" method="get" role="search">
+      <label class="visually-hidden" for="page-404-search">{{ page_404_search_placeholder }}</label>
+      <input
+        id="page-404-search"
+        type="search"
+        name="q"
+        placeholder="{{ page_404_search_placeholder }}"
+        autocomplete="off"
+      >
+      <button type="submit" aria-label="{{ page_404_search_label }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="page-404__actions">
+      <a href="/" class="page-404__btn page-404__btn--primary" title="{{ page_404_back_home }}" aria-label="{{ page_404_back_home }}">{{ page_404_back_home }}</a>
+      <a href="/collections" class="page-404__btn page-404__btn--ghost" title="{{ page_404_view_products }}" aria-label="{{ page_404_view_products }}">{{ page_404_view_products }}</a>
+    </div>
+
+    <p class="page-404__hint">{{ page_404_hint }}</p>
+  </div>
+</section>
+
+<style>
+  .page-404 {
+    --p404-accent: var(--shop-color, #ff7400);
+    --p404-text: var(--shop-text-color, #171718);
+    --p404-bg: var(--shop-bg-color, #fff);
+    --p404-muted: color-mix(in srgb, var(--p404-text) 55%, transparent);
+    --p404-border: color-mix(in srgb, var(--p404-text) 12%, transparent);
+    --p404-surface: color-mix(in srgb, var(--p404-bg) 88%, var(--p404-accent) 12%);
+
+    position: relative;
+    min-height: clamp(520px, 72vh, 760px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(48px, 8vw, 96px) 20px;
+    overflow: hidden;
+    font-family: var(--base-font, 'Inter', system-ui, sans-serif);
+    color: var(--p404-text);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--p404-accent) 14%, transparent), transparent 60%),
+      var(--p404-bg);
+  }
+
+  .page-404__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .page-404__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.45;
+    animation: p404-float 9s ease-in-out infinite;
+  }
+
+  .page-404__orb--1 {
+    width: 280px;
+    height: 280px;
+    top: 8%;
+    left: -4%;
+    background: color-mix(in srgb, var(--p404-accent) 55%, #fff);
+    animation-delay: 0s;
+  }
+
+  .page-404__orb--2 {
+    width: 220px;
+    height: 220px;
+    right: -2%;
+    bottom: 12%;
+    background: color-mix(in srgb, var(--p404-accent) 35%, #7c3aed);
+    animation-delay: -3s;
+  }
+
+  .page-404__orb--3 {
+    width: 160px;
+    height: 160px;
+    top: 42%;
+    right: 18%;
+    background: color-mix(in srgb, var(--p404-accent) 25%, #38bdf8);
+    animation-delay: -5s;
+  }
+
+  @keyframes p404-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-18px) scale(1.04); }
+  }
+
+  .page-404__inner {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 560px);
+    text-align: center;
+    animation: p404-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes p404-rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .page-404__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 18px);
+    margin-bottom: 8px;
+    user-select: none;
+  }
+
+  .page-404__code {
+    font-size: clamp(72px, 16vw, 120px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(
+      160deg,
+      var(--p404-text) 0%,
+      color-mix(in srgb, var(--p404-accent) 70%, var(--p404-text)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: p404-wobble 4s ease-in-out infinite;
+  }
+
+  .page-404__code:last-child {
+    animation-delay: -0.15s;
+  }
+
+  @keyframes p404-wobble {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(-2deg); }
+  }
+
+  .page-404__face {
+    width: clamp(72px, 14vw, 96px);
+    height: clamp(72px, 14vw, 96px);
+    border-radius: 50%;
+    background: var(--p404-surface);
+    border: 2px solid var(--p404-border);
+    box-shadow:
+      0 20px 40px color-mix(in srgb, var(--p404-accent) 18%, transparent),
+      inset 0 1px 0 color-mix(in srgb, #fff 60%, transparent);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-items: center;
+    gap: 10px 18px;
+    padding: 22px 16px 18px;
+    animation: p404-bounce 2.8s ease-in-out infinite;
+  }
+
+  @keyframes p404-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .page-404__eye {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--p404-text);
+    animation: p404-blink 5s infinite;
+  }
+
+  @keyframes p404-blink {
+    0%, 46%, 48%, 100% { transform: scaleY(1); }
+    47% { transform: scaleY(0.12); }
+  }
+
+  .page-404__mouth {
+    grid-column: 1 / -1;
+    width: 28px;
+    height: 14px;
+    border: 3px solid var(--p404-text);
+    border-top: 0;
+    border-radius: 0 0 20px 20px;
+    margin-top: -2px;
+  }
+
+  .page-404__badge {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--p404-accent);
+    background: color-mix(in srgb, var(--p404-accent) 12%, var(--p404-bg));
+    border: 1px solid color-mix(in srgb, var(--p404-accent) 28%, transparent);
+    border-radius: 999px;
+  }
+
+  .page-404__title {
+    margin: 0 0 12px;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .page-404__subtext {
+    margin: 0 auto 28px;
+    max-width: 42ch;
+    font-size: clamp(15px, 2.2vw, 17px);
+    line-height: 1.65;
+    color: var(--p404-muted);
+  }
+
+  .page-404__search {
+    display: flex;
+    align-items: stretch;
+    max-width: 420px;
+    margin: 0 auto 24px;
+    background: var(--p404-bg);
+    border: 1px solid var(--p404-border);
+    border-radius: var(--radius-lg, 24px);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--p404-text) 6%, transparent);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .page-404__search:focus-within {
+    border-color: color-mix(in srgb, var(--p404-accent) 50%, var(--p404-border));
+    box-shadow:
+      0 8px 30px color-mix(in srgb, var(--p404-accent) 14%, transparent),
+      0 0 0 3px color-mix(in srgb, var(--p404-accent) 16%, transparent);
+  }
+
+  .page-404__search input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 18px;
+    border: 0;
+    outline: none;
+    font: inherit;
+    font-size: 15px;
+    color: var(--p404-text);
+    background: transparent;
+  }
+
+  .page-404__search input::placeholder {
+    color: var(--p404-muted);
+  }
+
+  .page-404__search button {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background: var(--p404-accent);
+    transition: filter 0.2s ease, transform 0.15s ease;
+  }
+
+  .page-404__search button:hover {
+    filter: brightness(1.06);
+  }
+
+  .page-404__search button:active {
+    transform: scale(0.96);
+  }
+
+  .page-404__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .page-404__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-md, 14px);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .page-404__btn--primary {
+    color: #fff;
+    background: var(--p404-accent);
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--p404-accent) 35%, transparent);
+  }
+
+  .page-404__btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px color-mix(in srgb, var(--p404-accent) 42%, transparent);
+  }
+
+  .page-404__btn--ghost {
+    color: var(--p404-text);
+    background: transparent;
+    border: 1px solid var(--p404-border);
+  }
+
+  .page-404__btn--ghost:hover {
+    background: color-mix(in srgb, var(--p404-text) 5%, var(--p404-bg));
+    transform: translateY(-2px);
+  }
+
+  .page-404__hint {
+    margin: 0;
+    font-size: 13px;
+    color: var(--p404-muted);
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 480px) {
+    .page-404__actions {
+      flex-direction: column;
+    }
+
+    .page-404__btn {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-404__orb,
+    .page-404__code,
+    .page-404__face,
+    .page-404__eye,
+    .page-404__inner {
+      animation: none !important;
+    }
+  }
+</style>

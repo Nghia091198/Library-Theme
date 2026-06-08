@@ -1,0 +1,12 @@
+{%layout none%}
+{%paginate collection.products by settings.pagination_limit %}
+{% if collection.products.size == 0 %}
+<div class="col-md-12 ">
+	<div class="collection-alert-no"><p>Không tìm thấy kết quả. Vui lòng thử lại!</p></div>
+</div>
+{% else%}
+	{% for product in collection.products %}
+	{% include 'product-loop' with grid:'col-lg-3 col-md-6 col-sm-6 col-6'%}
+	{% endfor %}
+{% endif %}
+{% endpaginate %}

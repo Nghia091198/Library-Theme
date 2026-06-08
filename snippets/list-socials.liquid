@@ -1,0 +1,33 @@
+<div class="block-list-social">
+  {%- include 'link-css-preload' with css_file: 'default-list-social.css' -%}
+  <ul class="d-flex list-social {{style}}">
+  	{%- if settings.shop_fanpage != blank -%}
+  	<li class="social-item ss-facebook">
+  		<a href="{{settings.shop_fanpage}}" class="link" target="_blank" rel="nofollow" title="Link to Facebook">
+  			<svg class="icon-svg" style="--fill-color: #000000" ><use xlink:href="#ic-facebook"></use></svg>
+  		</a>
+  	</li>
+  	{%- if settings.shop_zalo != blank -%}
+  	<li class="social-item ss-zalo">
+  		<a href="{{settings.shop_zalo}}" class="link" target="_blank" rel="nofollow" title="Link to Zalo">
+  			<svg class="icon-svg"><use xlink:href="#ic-zalo"></use></svg>
+  		</a>
+  	</li>
+  	{%- endif -%}
+  	{%- endif -%}
+  	{%- if settings.shop_youtube != blank -%}
+  	<li class="social-item ss-youtube">
+  		<a href="{{settings.shop_youtube}}" class="link" target="_blank" rel="nofollow" title="Link to Youtube">
+  			<svg class="icon-svg"><use xlink:href="#ic-youtube-text"></use></svg>
+  		</a>
+  	</li>
+  	{%- endif -%}
+  	{%- if settings.shop_tiktok != blank -%}
+  	<li class="social-item ss-tiktok">
+  		<a href="{{settings.shop_tiktok}}" class="link" target="_blank" rel="nofollow" title="Link to Tiktok">
+  			<svg class="icon-svg"><use xlink:href="#ic-tiktok"></use></svg>
+  		</a>
+  	</li>
+  	{%- endif -%}
+  </ul>
+</div>

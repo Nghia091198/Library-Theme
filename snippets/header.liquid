@@ -1,0 +1,86 @@
+{%- assign logo_alt = shop.name | strip -%}
+{%- assign logo_src = 'logo.png' | img_url: 'compact' | asset_url -%}
+{%- assign logo_src_2x = 'logo.png' | img_url: 'medium' | asset_url -%}
+{%- assign HEADER_TEXT_ARR = 'Tìm kiếm,Đăng nhập,Giỏ hàng' -%}
+{%- assign HEADER_TEXT = HEADER_TEXT_ARR | split: ',' -%}	
+{%- include 'topbar' -%}
+{%- capture schema_header_style -%}--header-bg: {{settings.header_bg_main}};
+--header-text-main: {{settings.header_text_main}};
+--header-text-main--hover: {{settings.header_texthover_main}};
+--header-bg--sub: {{settings.header_bg_sub}};
+--header-text-sub: {{settings.header_text_sub}};
+--header-text-sub--hover: {{settings.header_texthover_sub}};{%- endcapture -%}
+<header class="header-main" data-type="header-type-1" style="{{schema_header_style-}}">
+  <script fetchpriority="low" type="text/javascript" defer src="{{ 'header-script.js' | asset_url }}"></script>
+  <script fetchpriority="low" type="text/javascript" defer src="{{ 'search-drawer.js' | asset_url }}"></script>
+	<div class="header-relative">
+		<div class="container">
+			<div class="header-wrapper">
+				<nav class="header-top">
+					<div class="header-wrap--hamburger">
+						<button type="button" class="hamburger js-open-menu-mobile" aria-label="Menu" aria-expanded="false">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+					</div>
+					<div class="header-left">
+            <div class="header--logo">
+							{%- if settings.use_logo -%}
+							<a href="/" class="header-logo__link" title="{{ logo_alt }}" aria-label="{{ logo_alt }}">
+								<picture class="header-logo__picture">
+									<source media="(max-width: 991px)" srcset="{{ logo_src }} 1x, {{ logo_src_2x }} 2x">
+									<source media="(min-width: 992px)" srcset="{{ logo_src }} 1x, {{ logo_src_2x }} 2x">
+									<img class="header-logo__img h-auto" src="{{ logo_src }}" srcset="{{ logo_src }} 160w, {{ logo_src_2x }} 320w" sizes="(max-width: 991px) 120px, 160px" width="160" height="48" alt="{{ logo_alt }}" loading="eager" decoding="sync" fetchpriority="high">
+								</picture>
+							</a>
+							{%- else -%}
+							<a href="/" title="{{ logo_alt }}" aria-label="{{ logo_alt }}">{{ shop.name }}</a>
+							{%- endif -%}
+						</div>
+					</div>
+					<div class="header-middle">
+            <div class="header--logo d-lg-none">
+							{%- if settings.use_logo -%}
+							<a href="/" class="header-logo__link" title="{{ logo_alt }}" aria-label="{{ logo_alt }}">
+								<picture class="header-logo__picture">
+									<source media="(max-width: 991px)" srcset="{{ logo_src }} 1x, {{ logo_src_2x }} 2x">
+									<source media="(min-width: 992px)" srcset="{{ logo_src }} 1x, {{ logo_src_2x }} 2x">
+									<img class="header-logo__img" src="{{ logo_src }}" srcset="{{ logo_src }} 160w, {{ logo_src_2x }} 320w" sizes="(max-width: 991px) 120px, 160px" width="160" height="48" alt="{{ logo_alt }}" loading="eager" decoding="async" fetchpriority="low">
+								</picture>
+							</a>
+							{%- else -%}
+							<a href="/" title="{{ logo_alt }}" aria-label="{{ logo_alt }}">{{ shop.name }}</a>
+							{%- endif -%}
+						</div>
+						<div class="navbar-menu">
+							{%- include 'menu' with menuHandle:settings.main_menu-%}
+						</div>
+					</div>
+					<div class="header-right">
+						<div class="navbar-action">
+							<div class="header-action action-search">
+								<a href="/search" data-tooltip="{{HEADER_TEXT[0]}}" class="btn-search js-open-search" aria-label="{{lbl_search}}" title="{{lbl_search}}">
+									<svg class="icon-svg" aria-hidden="true"><use xlink:href="#ic-search"></use></svg>
+								</a>
+							</div>
+							<div class="header-action action-account">
+								<a href="/account/login" data-tooltip="{{HEADER_TEXT[1]}}" aria-label="{{lbl_account}}" title="{{lbl_account}}">
+									<svg class="icon-svg" aria-hidden="true"><use xlink:href="#ic-account"></use></svg>
+								</a>
+							</div>
+							<div class="header-action action-cart">
+								<a href="javascript:void(0);" role="button" data-tooltip="{{HEADER_TEXT[2]}}" class="btn-cart js-open-minicart" aria-label="{{lbl_cart}}" title="{{lbl_cart}}">
+									<svg class="icon-svg" aria-hidden="true"><use xlink:href="#ic-cart-bag"></use></svg>
+									<span class="count-holder">
+										<span class="count js-cart-count">{{ cart.item_count }}</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>

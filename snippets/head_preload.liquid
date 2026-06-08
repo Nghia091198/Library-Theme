@@ -1,0 +1,40 @@
+<link rel="canonical" href="{{ canonical_url }}" />
+<link rel="alternate" href="{{ canonical_url }}" hreflang="vi-vn" />	
+<link rel="dns-prefetch" href="{{shop.url}}">
+<link rel="dns-prefetch" href="//hstatic.net">
+<link rel="dns-prefetch" href="//theme.hstatic.net/">
+<link rel="dns-prefetch" href="//file.hstatic.net/">
+<link rel="dns-prefetch" href="//www.google-analytics.com/">
+<link rel="dns-prefetch" href="//www.googletagmanager.com/">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//www.facebook.com">
+<link rel="dns-prefetch" href="//connect.facebook.net">
+<link rel="dns-prefetch" href="//static.ak.facebook.com">
+<link rel="dns-prefetch" href="//static.ak.fbcdn.net">
+<link rel="dns-prefetch" href="//s-static.ak.facebook.com">
+{%comment%}<link rel="preconnect" href="https://www.youtube.com">{%endcomment%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{%- if settings.use_logo -%}
+<link rel="preload" href="{{ 'logo.png' | img_url: 'compact' | asset_url }}" as="image" media="(min-width: 992px)" fetchpriority="high">
+<link rel="preload" href="{{ 'logo.png' | img_url: 'compact' | asset_url }}" as="image" media="(max-width: 991px)" fetchpriority="high">
+{%- endif -%}
+{%- if template contains 'index' -%}
+<link rel="preload" href="{{ 'slide_1_img.png' | asset_url }}" as="image" media="(min-width: 768px)"> 
+<link rel="preload" href="{{ 'slide_1_img.png' | img_url: 'large' | asset_url }}" as="image" media="(max-width: 767px)"> 
+{%- for i in (2..3) -%}
+{%- capture show -%}slide_{{i}}_show{%- endcapture -%}
+{%- capture img -%}slide_{{i}}_img.png{%- endcapture -%}
+{%- capture imgMb -%}slide_{{i}}_imgMb.png{%- endcapture -%}
+{%- if settings[show] -%}
+<link rel="preload" href="{{ img | asset_url }}" as="image" media="(min-width: 768px)"> 
+<link rel="preload" href="{{ imgMb | img_url: 'large' | asset_url }}" as="image" media="(max-width: 767px)"> 
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+
+{%- if template contains 'index' -%}
+<link rel="preload" href="{{ 'marquee-scroll.min.css' | asset_url }}" as="style" fetchpriority="low">
+{%- endif -%}
+

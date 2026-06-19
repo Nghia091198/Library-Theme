@@ -1,0 +1,40 @@
+{%- assign toast_success_msg = 'Cảm ơn bạn đã liên hệ. Chúng tôi sẽ sớm liên hệ với bạn!' -%}
+window.TYT = window.TYT || {};
+TYT.Toast = {
+	_instance: null,
+	_defaultMessage: "{{ toast_success_msg | json}}",
+	init: function() {
+		if (typeof Notyf === 'undefined' || this._instance) return;
+		this._instance = new Notyf({
+			duration: 3000,
+			ripple: false,
+			dismissible: true,
+			position: { x: 'right', y: 'top' },
+			types: [
+				{
+					type: 'success',
+					className: 'notyf__toast--success',
+					background: 'var(--shop-color, #0cb771)',
+					icon: false
+				},
+				{
+					type: 'error',
+					className: 'notyf__toast--error',
+					background: '#ed3d3d',
+					icon: false
+				}
+			]
+		});
+	},
+	success: function(message) {
+		this.init();
+		if (this._instance) this._instance.success(message || this._defaultMessage);
+	},
+	error: function(message) {
+		this.init();
+		if (this._instance) this._instance.error(message || 'Đã có lỗi xảy ra. Vui lòng thử lại.');
+	}
+};
+document.addEventListener('DOMContentLoaded', function() {
+	TYT.Toast.init();
+});

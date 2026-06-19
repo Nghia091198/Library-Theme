@@ -1,0 +1,10 @@
+<h1 class="d-none">{{shop.name}}</h1>
+{%comment%}
+{%- for i in (1..14) -%}
+{%- capture sectionname -%}section_home_{{i}}{%- endcapture -%}
+{%- if settings[sectionname] != 'none' -%}
+{%- include settings[sectionname] -%}
+{%- endif -%}
+{%- endfor -%}
+{%endcomment%}
+{%- include 'home-slider' -%} 

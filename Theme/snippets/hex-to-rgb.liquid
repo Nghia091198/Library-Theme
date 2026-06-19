@@ -1,0 +1,38 @@
+{%- assign hex = color | remove: '#' | downcase -%}
+
+{%- assign r_hex = hex | slice: 0, 2 -%}
+{%- assign g_hex = hex | slice: 2, 2 -%}
+{%- assign b_hex = hex | slice: 4, 2 -%}
+
+{%- assign r_hi = r_hex | slice: 0 -%}
+{%- assign r_lo = r_hex | slice: 1 -%}
+{%- assign g_hi = g_hex | slice: 0 -%}
+{%- assign g_lo = g_hex | slice: 1 -%}
+{%- assign b_hi = b_hex | slice: 0 -%}
+{%- assign b_lo = b_hex | slice: 1 -%}
+ 
+{%- assign r_h = 0 -%}{%- assign r_l = 0 -%}
+{%- assign g_h = 0 -%}{%- assign g_l = 0 -%}
+{%- assign b_h = 0 -%}{%- assign b_l = 0 -%}
+
+{%- assign map = "0:0,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,a:10,b:11,c:12,d:13,e:14,f:15" | split: ',' -%}
+
+{%- for pair in map -%}
+  {%- assign kv = pair | split: ':' -%}
+  {%- if kv[0] == r_hi -%}{%- assign r_h = kv[1] | times: 16 -%}{%- endif -%}
+  {%- if kv[0] == r_lo -%}{%- assign r_l = kv[1] -%}{%- endif -%}
+  {%- if kv[0] == g_hi -%}{%- assign g_h = kv[1] | times: 16 -%}{%- endif -%}
+  {%- if kv[0] == g_lo -%}{%- assign g_l = kv[1] -%}{%- endif -%}
+  {%- if kv[0] == b_hi -%}{%- assign b_h = kv[1] | times: 16 -%}{%- endif -%}
+  {%- if kv[0] == b_lo -%}{%- assign b_l = kv[1] -%}{%- endif -%}
+{%- endfor -%}
+
+{%- assign r = r_h | plus: r_l -%}
+{%- assign g = g_h | plus: g_l -%}
+{%- assign b = b_h | plus: b_l -%}
+
+{%- if alpha -%}
+  {%- assign hex_rgb_output = 'rgba(' | append: r | append: ',' | append: g | append: ',' | append: b | append: ',' | append: alpha | append: ')' -%}
+{%- else -%}
+  {%- assign hex_rgb_output = 'rgb(' | append: r | append: ',' | append: g | append: ',' | append: b | append: ')' -%}
+{%- endif -%}

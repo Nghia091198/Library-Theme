@@ -1,0 +1,30 @@
+{%- assign lbl_cart_title = 'Giỏ hàng' -%}
+{%- assign lbl_total = 'Tổng cộng' -%}
+{%- assign lbl_checkout = 'Thanh toán' -%}
+{%- assign lbl_view_cart = 'Xem giỏ hàng' -%}
+<div class="modal newModal" id="block-cart-modal">
+	<div class="newModal-backdrop"></div>
+	<div class="modal--container">
+		<div class="modal--wrapper">
+			<div class="modal--header">
+				<button type="button" class="close" data-dismiss="modal"><svg class="icon-svg"><use xlink:href="#ic-times"></use></svg></button>
+				<div class="modal--title">{{lbl_cart_title}}</div>
+			</div>
+			<div class="modal--body">
+				<div class="list-minicart js-minicart-list">
+					<div class="cart-group single"></div>
+				</div>
+				<div class="wrapper-bottom">
+					<div class="minicart-total js-minicart-total d-none">
+						<div class="text--total">{{lbl_total}}</div>
+						<div class="price--total">{{cart.total_price | money}}</div>
+					</div>
+					<div class="block-action">
+						<button class="button btn-checkout">{{lbl_checkout}}</button>
+						<a class="button btn-cartlink" href="/cart" title="{{lbl_view_cart}}" aria-label="{{lbl_view_cart}}">{{lbl_view_cart}}<svg class="icon-svg" aria-hidden="true"><use xlink:href="#ic-arrow-right"></use></svg></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

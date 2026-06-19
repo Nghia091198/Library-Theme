@@ -1,0 +1,70 @@
+{%- assign lbl_search_page = 'Đến trang tìm kiếm' -%}
+{%- capture smartSearchStyle -%}
+  --smartsearch-bg: {{settings.smartsearch_bg}};
+    --smartsearch-text: {{settings.smartsearch_text}};
+  --smartsearch-bg-tab: {% include'hex-to-rgb',color:settings.smartsearch_tab_bg,alpha:0.08%}{{hex_rgb_output}};
+  --smartsearch-text-tab: {{settings.smartsearch_tab_text}};
+  --smartsearch-bg-tab-hover: {{settings.smartsearch_tab_bghover}};
+  --smartsearch-text-tab-hover: {{settings.smartsearch_tab_texthover}};
+{%- endcapture -%}
+<div class="modal newModal" id="block-search-modal" style="{{smartSearchStyle-}}">
+	<div class="newModal-backdrop"></div>
+	<div class="modal--container">
+		<div class="modal--wrapper">
+			<div class="modal--header">
+				<button type="button" class="close" data-dismiss="modal"><svg class="icon-svg"><use xlink:href="#ic-times"></use></svg></button>
+				<div class="modal--title">{{settings.smartsearch_title}}</div>
+			</div>
+			<div class="modal--body">
+				<div class="block-smart-search js-search-panel" id="block-smart-search">
+					<form action="/search" class="searchform-product ultimate-search js-search-form">
+						<div class="wpo-search-inner field field--bill">
+							<input type="hidden" name="type" value="product,article" />
+							<input required id="inputSearchAuto" class="input-search field-input js-search-input" name="q" maxlength="40" autocomplete="off" type="text" size="20" placeholder="{{settings.smartsearch_placeholder}}" aria-label="input search">
+						</div>
+						<button type="submit" class="btn-search js-search-submit" aria-label="{{settings.smartsearch_title}}">
+							<svg class="icon-svg" style="--icon-width: 26px;--icon-height: 32px;"><use xlink:href="#ic-search"></use></svg>
+						</button>
+					</form>
+          <div class="block-smartsearch-result js-search-results" style="display: none;">
+              <ul class="smartsearch-result-tabs js-search-tabs"></ul>
+          </div>
+				</div>
+			</div>
+			<div class="wrapper-bottom">
+        {%- if settings.smartsearch_suggest_show -%}
+        <div class="block-suggest-search">
+          <div class="title font-weight-bold">{{settings.smartsearch_suggest_title}}</div>
+          <div class="list-suggest-search">
+            {%- for link in linklists[settings.smartsearch_suggest_menu].links -%}
+            <a class="item hover-underline" href="{{link.url}}">{{link.title}}</a>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endif -%}
+        {%- if settings.smartsearch_product_show -%}
+        <div class="block-recommend-search">
+          <div class="title font-weight-bold">{{settings.smartsearch_product_title}}</div>
+          <div class="list-recommend position-relative swiperStyle">
+            <div class="swiper swiper-container js-swiper-slider" data-items="1" data-margin="10" data-loop="true" data-nav="true">
+              <div class="swiper-wrapper">
+              {%- for product in collections[settings.smartsearch_product_collection].products limit: settings.smartsearch_product_limit -%}
+                <div class="swiper-slide">
+                  <div class="block-product block-product-horizontal">
+                    {%- include 'product-loop-horizontal' with isTag: false,quickview:false -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+              </div>
+            </div>
+            {%- include 'swiper-navigation' with style:"01" -%}
+          </div>
+        </div>
+        {%- endif -%}
+        <div class="block-action">
+          <a class="button w-100" href="/search">{{lbl_search_page}}<svg class="icon-svg"><use xlink:href="#ic-arrow-right"></use></svg></a>
+        </div>
+				</div>
+		</div>
+	</div>
+</div>

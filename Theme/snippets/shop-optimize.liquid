@@ -1,0 +1,171 @@
+<script async defer>
+	let mainSlider = () => {
+		const el = document.querySelector('heroslider swiper-component');
+		if (!el || el.classList.contains('swiper-initialized')) return;
+		const htmlSlide = `
+		{%- for i in (2..5) -%}
+  {%-capture show-%}slide_{{i}}_show{%-endcapture-%}
+  {%-if settings[show]-%}
+	{%-capture type-%}slide_{{i}}_type{%-endcapture-%}
+  {%-capture link_mp4-%}slide_{{i}}_mp4_url{%-endcapture-%}
+  {%-capture link_youtube-%}slide_{{i}}_youtube_url{%-endcapture-%}
+  {%-capture image_d-%}slide_{{i}}_d_image.png{%-endcapture-%}
+  {%-capture image_m-%}slide_{{i}}_m_image.png{%-endcapture-%}
+	{%-capture title-%}slide_{{i}}_title{%-endcapture-%}
+  {%-capture desc-%}slide_{{i}}_desc{%-endcapture-%}
+	{%-capture content_pos-%}slide_{{i}}_pos{%-endcapture-%} 
+	{%-capture btn_title-%}slide_{{i}}_btntitle{%-endcapture-%}
+  {%-capture btn_link-%}slide_{{i}}_btnurl{%-endcapture-%}
+	{%-capture alt-%}slide_{{i}}_alt{%-endcapture-%} 
+	{%-assign alt_value = settings[alt] | default: "Banner slide" | append: i -%}
+  <div class="swiper-slide {{settings[type]}}">
+    <div class="slide-banner-container">
+        <div class="slide-banner--hero position-relative">
+            {%case settings[type]%}
+            {%when "type_image"%}
+                <slideimage>
+                    <a href="{{ settings[btn_link] }}" title="{{settings[title] | strip}}">
+                        {%include 'render-img' with src:image_d,src_mobile:image_m,class:"img-fluid",alt:alt_value,w:"1920",h:"800",loading:"lazy",decoding:"async"%}
+                    </a>
+                </slideimage>
+            {%when "type_youtube"%}
+                <div class="video-wrapper">
+                    <slideyoutube>
+                        <iframe src="{{ settings[link_youtube] }}" frameborder="0" allowfullscreen></iframe>
+                    </slideyoutube>
+                </div>
+            {%when "type_mp4"%}
+                <slidevideo>
+                    <video controls>
+                        <source src="{{ settings[link_mp4] }}" type="video/mp4">
+                    </video>
+                </slidevideo>
+            {%endcase%}
+        </div>
+        <div class="slide-banner--content">
+            <slidecontent {%if settings[content_pos] == "left"%}left{%elsif settings[content_pos] == "right"%}right{%else%}center{%endif%}>
+							{%-if settings[title] != blank-%}
+							<h2 class="slide-content__title">{{ settings[title] }}</h2>
+							{%- endif -%}
+							{%-if settings[desc] != blank-%}
+							<p class="slide-content__desc">{{ settings[desc] }}</p>
+							{%- endif -%}
+							{%-if settings[btn_title] != blank -%}
+							<div class="slide-content__btn">
+									<a button-effect class="btn btn-secondary" href="{{ settings[btn_link] }}" title="{{settings[btn_title] | strip}}">
+											{{settings[btn_title]}}
+											<span class="btn--icon">
+													<svg class="icon-svg"><use xlink:href="#ic-arrow-45top-r"></use></svg>
+											</span>
+									</a>
+							</div>
+							{%- endif -%}   
+					</slidecontent>
+        </div>
+    </div> 
+  </div>
+  {%-endif-%}
+{%- endfor -%}`;
+let navigationHtml = `<div class="swiper-pagination"></div>
+<div class="swiper-button-container">
+  ${window.main.swiperNav._s_navigation}
+</div>`;
+el.querySelector('.swiper-wrapper').insertAdjacentHTML('beforeend', htmlSlide);
+el.insertAdjacentHTML('beforeend', navigationHtml);
+
+let processingCircle = `
+<slide-progress
+        data-target="hero-swiper"
+        data-image-time="{{ settings.slide_interval }}"
+        hidden>
+        <button type="button" class="slide-progress__btn" aria-label="Tạm dừng">
+            <svg class="slide-progress__ring" viewBox="0 0 48 48" aria-hidden="true">
+                <circle class="slide-progress__track" cx="24" cy="24" r="21"></circle>
+                <circle class="slide-progress__bar"   cx="24" cy="24" r="21"></circle>
+            </svg>
+            <span class="slide-progress__icon slide-progress__icon--pause" aria-hidden="true"></span>
+            <span class="slide-progress__icon slide-progress__icon--play"  aria-hidden="true"></span>
+        </button>
+    </slide-progress>`;
+		el.insertAdjacentHTML('beforeend', processingCircle);
+if (!customElements.get('swiper-component')) {
+  customElements.define('swiper-component', SwiperComponent);
+}
+	if (!customElements.get('slide-progress')) {
+  customElements.define('slide-progress', SlideProgressComponent);
+}
+	};
+	let recapchaRender = () => {
+		let input = $('input[name="g-recaptcha-response"]');
+		input.each(function(index, elemt) {
+			let $elemt = $(elemt);
+			let $nextElem = $elemt.next();
+			if ($nextElem.length && $nextElem.prop('tagName') === 'NOSCRIPT') {
+				let apiSrcRecapcha = $nextElem.attr('src');
+				if (!apiSrcRecapcha) return;
+				let idInput = $elemt.attr('id');
+				let _token = apiSrcRecapcha.split('render=')[1];
+				let script = document.createElement('script');
+				script.async = true;
+				script.src = apiSrcRecapcha;
+				document.body.appendChild(script);
+				script.onload = function () {
+					setTimeout(function () {
+						grecaptcha.ready(function () {
+							grecaptcha.execute(_token, { action: 'submit' }).then(function (token) {
+								document.getElementById(idInput).value = token;
+							});
+						});
+					}, 1000);
+				};
+			}
+		});
+	};
+	let loadThirtyParty = () => {
+		// Load tiktok, zalo, facebook, google, etc.
+	};
+	document.addEventListener('DOMContentLoaded', function() {
+		if (window.main && window.main.template && window.main.template.includes('index')) {
+			mainSlider();
+		}
+		setTimeout(function() {
+			recapchaRender();
+			loadThirtyParty();
+		}, 3000);
+		function loadStyles(stylesheetUrls) {
+			stylesheetUrls.forEach(url => {
+				const link = document.createElement('link');
+				link.rel = 'preload';
+				link.as = 'style';
+				link.href = url;
+				link.onload = function() {
+					this.onload = null;
+					this.rel = 'stylesheet';
+				};
+				document.head.appendChild(link);
+			});
+		}
+		function loadScripts(scriptUrls) {
+			var index = 0;
+			function loadNext() {
+				if (!scriptUrls || index >= scriptUrls.length) return;
+				var script = document.createElement('script');
+				script.src = scriptUrls[index];
+				script.onload = function() {
+					index += 1;
+					loadNext();
+				};
+				script.onerror = function() {
+					index += 1;
+					loadNext();
+				};
+				document.head.appendChild(script);
+			}
+			loadNext();
+		}
+		if (window.main) {
+			loadStyles(window.main.csscallafter);
+			loadScripts(window.main.scriptcallafter);
+		}
+	});
+</script>

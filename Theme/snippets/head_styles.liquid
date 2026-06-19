@@ -1,0 +1,79 @@
+{%- unless settings.base_font contains 'Arial' -%}
+{%- if settings.base_font -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family={{settings.base_font | replace: ' ','+'}}:wght@200;300;400;500;600;700;900&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{settings.base_font | replace: ' ','+'}}:wght@200;300;400;500;600;700;900&display=optional"></noscript>
+{%- endif -%}
+{%- endunless -%}
+ 
+<style>
+:root {
+	--base-font: {{settings.base_font | default: 'Mulish'}}, system-ui, -apple-system, sans-serif;
+	--base-font-title: {{settings.base_font_title | default: 'Mulish'}}, system-ui, -apple-system, sans-serif;
+  --color-bg-theme: {{settings.theme_bg_color | default: '#ffffff'}};
+  --color-text-theme: {{settings.theme_text_color | default: '#171718'}};
+	--color-border: #CECECE;
+  --radius-sm: 4px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+	--stroke-width: 1px;
+	--icon-width: 24px;
+	--icon-height: 24px;
+	--price: {{settings.price_color | default: '#121212'}};
+  --price-highlight: #FF0000;
+	--price-contact: #FF0000;
+	--price-compare: {{settings.compare_price_color | default: '#CECECE'}};
+	--percent-bg: {{settings.percent_bg | default: '#e73737'}};
+	--percent-text: {{settings.percent_text | default: '#FFFFFF'}};
+	--soldout-bg: {{settings.soldout_bg_color | default: '#111111' }};
+	--soldout-text: {{settings.soldout_text_color | default: '#FFFFFF'}};
+	--proloop-label-bg: {{settings.label1_bg_color | default: '#0cb771'}};
+	--proloop-label-text: {{settings.label1_text_color | default: '#FFFFFF'}};
+}
+[swiper-config] {
+	--swiper-theme-color: #121212;
+	--swiper-navigation-size: 24px;
+	--swiper-pagination-bullet-inactive-color: {{settings.theme_color | default: '#171718'}};
+	--swiper-pagination-color: {{settings.theme_color | default: '#171718'}};
+	--swiper-pagination-bullet-inactive-opacity: .4;
+	--swiper-pagination-bullet-horizontal-gap: 4px;
+	--swiper-pagination-bullet-width: 10px;
+	--swiper-pagination-bullet-height: 10px;
+}
+[button-color] {
+	--color-btn-bg-primary: {{settings.theme_btn_bgcolor | default: #1B2631}};
+	--color-btn-text-primary: {{settings.theme_btn_textcolor | default: #ffffff}};
+	--color-btn-bg-primary-hover: {{settings.theme_btn_bgcolor_hover | default: #FFFFFF}};
+	--color-btn-text-primary-hover: {{settings.theme_btn_textcolor_hover | default: #1B2631}};
+	--color-btn-bg-secondary: {{settings.theme_btn_bgcolor_2 | default:#FFFFFF}};
+	--color-btn-text-secondary: {{settings.theme_btn_textcolor_2 | default: #1B2631}};
+	--color-btn-bg-secondary-hover: {{settings.theme_btn_bgcolor_2_hover | default: #FFFFFF}};
+	--color-btn-text-secondary-hover: {{settings.theme_btn_textcolor_2_hover | default: #1B2631}};
+	--color-btn-bg-transparent: transparent;
+	--color-btn-text-transparent: var(--color-text-theme);
+	--color-btn-bg-transparent-hover: var(--color-btn-bg-primary);
+	--color-btn-text-transparent-hover: var(--color-text-bg-primary);
+}
+</style>
+{%- include 'link-css-preload' with css_file: 'utilities.min.css', blocking: true -%}
+{%- include 'link-css-preload' with css_file: 'style-global.scss.css', blocking: true -%}
+{%- include 'link-css-preload' with css_file: 'button.css', blocking: true -%}
+{%- include 'link-css-preload' with css_file: 'header-style.css', blocking: true -%}
+{%- if template contains 'index' -%}
+{%- include 'link-css-preload' with css_file: 'style-index.css', blocking: true -%}
+{%- elsif template contains 'collection' -%}
+{%- include 'link-css-preload' with css_file: 'style-collection.css', blocking: true -%}
+{%- elsif template contains 'product' -%}
+{%- include 'link-css-preload' with css_file: 'style-product.css', blocking: true -%}
+{%- elsif template contains 'blog' -%}
+{%- include 'link-css-preload' with css_file: 'style-article.css', blocking: true -%}
+{%- elsif template contains 'article' -%}
+{%- include 'link-css-preload' with css_file: 'style-article.css', blocking: true -%}
+{%- elsif template contains 'page' -%}
+{%- include 'link-css-preload' with css_file: 'style-page.css', blocking: true -%}
+{%- elsif template contains 'cart' -%}
+{%- include 'link-css-preload' with css_file: 'style-cart.css', blocking: true -%}
+{%- elsif template contains 'customers' -%}
+{%- include 'link-css-preload' with css_file: 'style-customer.css', blocking: true -%}
+{%- endif -%}

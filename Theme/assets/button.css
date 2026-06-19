@@ -1,0 +1,166 @@
+.swiper-button-prev,
+.swiper-button-next {
+    --size: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    content: none;
+}
+.swiper-button-container .swiper-button-prev:after, 
+.swiper-button-container .swiper-button-next:after {
+    position: static;
+    transform: unset;
+    font-size: 0;
+}
+.swiper-button-container {
+    --color-btn-primary: rgb(255 255 255);
+    display: flex;
+    gap: 10px;
+    position: absolute;
+        bottom: 25px;
+    right: 60px;
+    background: color-mix(in srgb, var(--color-btn-primary), transparent 80%);
+    border-radius: 30px;
+    display: inline-flex;
+    gap: .3rem;
+    padding: .35rem;
+    max-height: 3rem;
+    border: 1px solid color-mix(in srgb, var(--color-btn-primary), transparent 80%);
+    z-index: 1;
+}
+
+a[data-tooltip],
+button[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+}
+
+a[data-tooltip]:after,
+button[data-tooltip]:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #111;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    transition: opacity 0.3s;
+    font-size: 12px;
+}
+
+a[data-tooltip]:before,
+button[data-tooltip]:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 8px 7px;
+    border-color: transparent transparent #111 transparent;
+    top: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    transition: opacity 0.3s;
+}
+
+a[data-tooltip]:hover:after,
+a[data-tooltip]:hover:before,
+button[data-tooltip]:hover:after,
+button[data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
+    z-index: 20;
+}
+
+.btn {   
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--btn-color);
+  padding: 10px 28px;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  z-index: 0;
+}
+
+.btn--icon {
+    display: inline-block;
+    margin-left: 0.8rem;
+    line-height: 1;
+}
+
+.btn-primary {
+    background-color: var(--color-btn-bg-primary);
+    color: var(--color-btn-text-primary);
+}
+.btn-primary:hover {
+    background-color: var(--color-btn-bg-primary-hover);
+    color: var(--color-btn-text-primary-hover);
+}
+.btn-secondary {
+    background-color: var(--color-btn-bg-secondary);
+    color: var(--color-btn-text-secondary);
+}
+.btn-secondary:hover {
+    background-color: var(--color-btn-bg-secondary-hover);
+    color: var(--color-btn-text-secondary-hover);
+}
+.btn-transparent {
+    background-color: var(--color-btn-bg-transparent);
+    color: var(--color-btn-text-transparent);
+}
+.btn-transparent:hover {
+    background-color: var(--color-btn-bg-transparent-hover);
+    color: var(--color-btn-text-transparent-hover);
+}
+[button-effect].btn-secondary:hover {
+   background-color: var(--color-btn-bg-secondary);
+}
+[button-effect].btn-secondary:hover .btn--icon .icon-svg {
+    --icon-color: var(--color-btn-bg-secondary-hover);
+}
+[button-effect].btn-secondary [data-btn-effect-span] {
+    background-color: var(--color-btn-bg-secondary-hover);
+}
+[button-effect] {
+    --btn-width: 160px;
+}
+[button-effect] [data-btn-effect-span] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+[button-effect]:hover [data-btn-effect-span] {
+  width: 225%;
+  height: calc(var(--btn-width) * 2.25);
+}
+

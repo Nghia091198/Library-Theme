@@ -1,0 +1,117 @@
+{%- assign label1 = '' -%}
+{%- assign label2 = '' -%}
+{%- for tag in product.tags -%}
+{%- if tag contains 'label1_' -%}{%- assign label1 = tag | split: 'label1_' | last -%}{%- endif -%}
+{%- if tag contains 'label2_' -%}{%- assign label2 = tag | split: 'label2_' | last -%}{%- endif -%}
+{%- endfor -%}
+{% if product.selected_or_first_available_variant.compare_at_price > product.price %}
+{% assign price_sale = 0 %}
+{% assign price_sale = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | divided_by:product.selected_or_first_available_variant.compare_at_price | times : 100 | round : 0 %}
+{% endif %}
+
+{% assign specifications_divider = settings.product_specifications_title | handleize -%}
+{% assign content = '' -%}
+{% assign specifications = '' -%}
+{% assign specifications_content = '' -%}
+{% assign content = product.description -%}
+{% assign specifications_title = '<h6>' | append: settings.product_specifications_title | append: '</h6>' -%}
+
+{% assign product_content_arr = product.description | split: '<h6' -%}
+
+{% for content_item in product_content_arr -%}
+{% if forloop.index > 0 -%}
+
+{% if content_item contains '</h6>' -%}
+{% assign content_item_title = content_item | split: '</h6>' | first | strip_html -%}
+{% assign content_item_title_handleize = content_item_title | handleize -%}
+
+{% if content_item_title_handleize contains specifications_divider -%}
+{% assign specifications_inside = content_item | split: '</h6>' | last | split: '<table>' | last | split: '</table>' | first -%}
+
+{% assign specifications = specifications_inside | prepend: '<table>' | append: '</table>' -%}
+
+{%if specifications contains 'style' or specifications contains 'cellpadding' or specifications contains 'cellspacing' or specifications contains 'border'%}
+{% assign specifications = specifications | split: '<table>' | last %}
+{%endif%}
+  
+{% assign specifications_content = '<h6' | append: content_item_title | append: '</h6>' | append: specifications -%}
+{% endif -%}
+
+{% endif -%}
+{% endif -%}
+{% endfor -%}
+
+{% if specifications_content != blank -%}
+{% assign content = content | split: specifications_title | first -%}
+{% endif -%}
+
+{% assign content = content | remove: '<h6></h6>' -%}
+
+{%comment%}
+{%- include 'product-swatch-colors' -%}
+<section class="block-breadcrumb">
+	{%- include 'breadcrumb' -%}
+</section>
+<section class="product-wrapper">
+	<div class="container">
+		<div class="product-detail">
+			<div class="row">
+				<div class="col-lg-5 col-md-5 col-xs-12 col-12">
+					<div class="block-productGallery">
+						{%- include 'product-gallery' -%}
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-7 col-xs-12 col-12">
+					<div class="block-productDetail">
+						{%- include 'product-detail' -%}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-description">
+      {%- include 'product-description' -%}
+		</div>
+	</div>
+</section>
+{%endcomment%}
+<div class="product-detail">
+	<div class="container">
+		<expand-description data-max-height="220">
+  <div class="ed-fade">
+    <div class="ed-body js-ed-body">
+      {{product.description}}
+    </div>
+  </div>
+  <button class="ed-btn js-ed-btn">
+    <span class="ed-label js-ed-btn-text">Xem thêm</span>
+    <i class="ti ti-chevron-down"></i>
+  </button>
+</expand-description>
+	</div>
+</div>
+<script defer>
+	document.addEventListener('DOMContentLoaded', function() {
+		TYT.Component.expandDescription.init();
+	});
+</script>
+<style>
+	expand-description .ed-body {
+		overflow: hidden;
+		transition: height 0.3s ease;
+	}
+	expand-description .ed-fade {
+		position: relative;
+	}
+	expand-description .ed-fade::after {
+		content: '';
+		position: absolute;
+		bottom: 0; left: 0; right: 0;
+		height: 60px;
+		background: linear-gradient(transparent, #fff); /* đổi màu nền tương ứng */
+		pointer-events: none;
+		transition: opacity 0.3s;
+	}
+	expand-description.is-open .ed-fade::after { opacity: 0; }
+	expand-description .ed-btn i { transition: transform 0.3s; }
+	expand-description.is-open .ed-btn i { transform: rotate(180deg); }
+</style>

@@ -1,0 +1,314 @@
+<div class="box-settings" style="border: 1px solid #dee5eb;border-bottom: none;background: #fff;">
+	<fieldset class="test">
+		<legend>1. Thiết lập chung</legend>
+		<div class="col-sm-12">
+			<fieldset>
+				<legend>1. Logo và Favicon</legend> 
+				<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 0px 10px 20px;margin: -10px 0;">
+					<table>
+						<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none; ">Logo</h3>
+							<p>(Kích thước hiển thị tối đa là 300x70 pixel, tự động điều chỉnh nếu file của bạn lớn hơn kích thước này.)</p>
+						</td></tr>
+						<tr><th><strong>Hiển thị logo</strong></th><td><input type="checkbox" name="use_logo" value="1" /></td></tr>
+						<tr><td><strong>Chọn Logo</strong></td><td><input type="file" id="logo" name="logo.png" /></td></tr>
+						<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Favicon</h3><p>Biểu tượng website của bạn trên trình duyệt, kích thước chuẩn: 32x32 pixel</p></td></tr>
+						<tr><td><strong>Chọn favicon</strong>(.png)</td><td><input type="file" name="favicon.png"/></td></tr>
+						<tr><td><strong>Chọn favicon</strong>(.ico)</td><td><input type="text" name="ico_favicon"/></td></tr>
+					</table>
+				</div>
+			</fieldset>
+			<fieldset> 
+				<legend>2. Kiểu chữ</legend>
+				<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 0 10px 20px;margin: -10px 0;">
+					<table>
+						<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Kiểu chữ nội dung</h3></td></tr>
+						<tr>
+							<td><strong>Chọn kiểu chữ</strong></td>
+							<td>
+								<select name="base_font">
+									<option value="Quicksand">Quicksand</option>
+									<option value="Roboto">Roboto</option>
+									<option value="Roboto Condensed">Roboto Condensed</option>
+									<option value="Roboto Slab">Roboto Slab</option>
+									<option value="Source Sans Pro">Source Sans Pro</option>
+									<option value="Tinos">Tinos</option>
+									<option value="Noticia Text">Noticia Text</option>
+									<option value="Open Sans">Open Sans</option>
+									<option value="Open Sans Condensed">Open Sans Condensed</option>
+									<option value="Noto Sans">Noto Sans</option>
+									<option value="Spectral">Spectral</option>
+									<option value="Inter">Inter</option>
+									<option value="Mulish" selected>Mulish</option>
+								</select>
+							</td>
+						</tr>
+						<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Kiểu chữ tiêu đề</h3></td></tr>
+						<tr>
+							<td><strong>Chọn kiểu chữ tiêu đề</strong></td>
+							<td>
+								<select name="base_font_title">
+									<option value="Quicksand">Quicksand</option>
+									<option value="Roboto">Roboto</option>
+									<option value="Roboto Condensed">Roboto Condensed</option>
+									<option value="Roboto Slab">Roboto Slab</option>
+									<option value="Source Sans Pro">Source Sans Pro</option>
+									<option value="Tinos">Tinos</option>
+									<option value="Noticia Text">Noticia Text</option>
+									<option value="Open Sans">Open Sans</option>
+									<option value="Open Sans Condensed">Open Sans Condensed</option>
+									<option value="Noto Sans">Noto Sans</option>
+									<option value="Spectral">Spectral</option>
+									<option value="Inter">Inter</option>
+									<option value="Mulish" selected>Mulish</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>3. Màu sắc</legend>
+				<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 0 10px 20px;margin: -10px 0;">
+					<table>
+						<tr><td><strong>Màu nền trang</strong></td><td><input name="theme_bg_color" class="color" value="#F5F5F5"></td></tr>
+						<tr><td><strong>Màu chữ</strong></td><td><input name="theme_text_color" class="color" value="#1B2631"></td></tr>
+						<tr><td><h3 style="padding: 7px 10px; border-top: none;">Màu sắc button 1</h3></td></tr>
+						<tr><td><strong>Màu nền button</strong></td><td><input name="theme_btn_bgcolor" class="color" value="#1B2631"></td></tr>
+						<tr><td><strong>Màu chữ button</strong></td><td><input name="theme_btn_textcolor" class="color" value="#FFFFFF"></td></tr>
+						<tr><td><strong>Màu nền button hover</strong></td><td><input name="theme_btn_bgcolor_hover" class="color" value="#FFFFFF"></td></tr>
+						<tr><td><strong>Màu chữ button hover</strong></td><td><input name="theme_btn_textcolor_hover" class="color" value="#1B2631"></td></tr>
+						<tr><td><h3 style="padding: 7px 10px; border-top: none;">Màu sắc button 2</h3></td></tr>
+						<tr><td><strong>Màu nền button</strong></td><td><input name="theme_btn_bgcolor_2" class="color" value="#1B2631"></td></tr>
+						<tr><td><strong>Màu chữ button</strong></td><td><input name="theme_btn_textcolor_2" class="color" value="#FFFFFF"></td></tr>
+						<tr><td><strong>Màu nền button hover</strong></td><td><input name="theme_btn_bgcolor_2_hover" class="color" value="#FFFFFF"></td></tr>
+						<tr><td><strong>Màu chữ button hover</strong></td><td><input name="theme_btn_textcolor_2_hover" class="color" value="#1B2631"></td></tr>
+					</table>
+				</div>
+			</fieldset>
+			
+		</div>
+	</fieldset>
+	<fieldset class="test">
+		<legend>2. Trang chủ</legend>
+		<div class="setnd">
+			<div class="col-sm-6"><img src="" width="94%"></div>
+			<div class="col-sm-6">
+				<fieldset>
+					<legend>1. Home slider</legend> 
+					<div style="border-left: 1px solid #eeeeee;padding: 0 10px 8px 10px;">
+						<table>
+							<tr><td><strong>Khung hình</strong></td><td>
+								<select name="slide_container">
+									<option value="full_width" selected>Full width</option>
+									<option value="container">Container</option>
+								</select>
+							</td></tr>
+							<tr><td><strong>Thời gian chuyển slide</strong></td><td><input type="number" name="slide_interval" value="3" /></td></tr>
+							<tr><td><strong>Màu text chính</strong></td><td><input name="slide_text_color" class="color" value="#FFFFFF" /></td></tr>
+							<tr><td><strong>Màu text Button</strong></td><td><input name="slide_btn_textcolor" class="color" value="#FFFFFF" /></td></tr>
+							<tr><td><strong>Màu nền Button</strong></td><td><input name="slide_btn_bgcolor" class="color" value="#FFFFFF" /></td></tr>
+							<tr><td><strong>Màu text Button hover</strong></td><td><input name="slide_btn_textcolor_hover" class="color" value="#FFFFFF" /></td></tr>
+							<tr><td><strong>Màu nền Button hover</strong></td><td><input name="slide_btn_bgcolor_hover" class="color" value="#FFFFFF" /></td></tr>
+						</table>
+					</div>
+					<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 10px 8px 10px;">
+						<fieldset>
+							<legend>1. Slider 1 [Mặc định hiển thị]</legend> 
+							<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;border-right: 1px solid #eeeeee;padding: 0 10px 10px 10px;margin-top: -10px">
+								<table>
+									<tr><td><strong>Chọn kiểu hiển thị?</strong></td><td>
+										<select name="slide_1_type">
+											<option value="type_image" selected>Hình ảnh</option>
+											<option value="type_youtube">Youtube</option>
+											<option value="type_mp4">Link .mp4 cấu hình file</option>
+										</select>
+									</td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập nội dung</h3></td></tr>
+									<tr><td><strong>Vị trí hiển thị?</strong></td><td><select type="text" name="slide_1_content_position">
+										<option value="left">Canh trái</option>
+										<option value="center">Canh giữa</option>
+										<option value="right">Canh phải</option>
+									</select></td></tr>
+									<tr><td><strong>Tiêu đề</strong></td><td><input type="text" name="slide_1_title"/></td></tr>
+									<tr><td><strong>Mô tả</strong></td><td><textarea class="min-width-360px" name="slide_1_desc"></textarea></td></tr>
+									<tr><td><strong>Tiêu đề Button</strong><p style="font-size: 12px;">(bỏ trống để ẩn)</p></td><td><input type="text" name="slide_1_btntitle"/></td></tr>
+									<tr><td><strong>Đường dẫn</strong></td><td><input type="text" name="slide_1_btnurl"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập hình ảnh</h3></td></tr>
+									<tr><td><strong>Hình ảnh Desktop</strong><p style="font-size:12px">(1920px x 800px)</p></td>
+										<td><input type="file" name="slide_1_d_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Hình ảnh Mobile</strong><p style="font-size:12px">(767px x 600px)</p></td>
+										<td><input type="file" name="slide_1_m_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Alt</strong></td><td><input type="text" name="slide_1_alt"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập Youtube</h3></td></tr>
+									<tr><td><strong>Link Youtube</strong></td><td><input type="text" name="slide_1_youtube_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_1_youtube_content_show" value="1"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập MP4</h3></td></tr>
+									<tr><td><strong>Link MP4</strong></td><td><input type="text" name="slide_1_mp4_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_1_mp4_content_show" value="1"/></td></tr>
+								</table>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>2. Slider 2</legend> 
+							<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 10px 10px 10px;margin-top: -10px">
+								<table>
+									<tr><td><strong>Hiển thị?</strong></td><td><input type="checkbox" name="slide_2_show" value="1"/></td></tr>
+									<tr><td><strong>Chọn kiểu hiển thị?</strong></td><td>
+										<select name="slide_2_type">
+											<option value="type_image" selected>Hình ảnh</option>
+											<option value="type_youtube">Youtube</option>
+											<option value="type_mp4">Link .mp4 cấu hình file</option>
+										</select>
+									</td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập nội dung</h3></td></tr>
+									<tr><td><strong>Vị trí hiển thị?</strong></td><td><select type="text" name="slide_2_content_position">
+										<option value="left">Canh trái</option>
+										<option value="center">Canh giữa</option>
+										<option value="right">Canh phải</option>
+									</select></td></tr>
+									<tr><td><strong>Tiêu đề</strong></td><td><input type="text" name="slide_2_title"/></td></tr>
+									<tr><td><strong>Mô tả</strong></td><td><textarea class="min-width-360px" name="slide_2_desc"></textarea></td></tr>
+									<tr><td><strong>Tiêu đề Button</strong><p style="font-size: 12px;">(bỏ trống để ẩn)</p></td><td><input type="text" name="slide_2_btntitle"/></td></tr>
+									<tr><td><strong>Đường dẫn</strong></td><td><input type="text" name="slide_2_btnurl"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập hình ảnh</h3></td></tr>
+									<tr><td><strong>Hình ảnh Desktop</strong><p style="font-size:12px">(1920px x 800px)</p></td>
+										<td><input type="file" name="slide_2_d_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Hình ảnh Mobile</strong><p style="font-size:12px">(767px x 600px)</p></td>
+										<td><input type="file" name="slide_2_m_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Alt</strong></td><td><input type="text" name="slide_2_alt"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập Youtube</h3></td></tr>
+									<tr><td><strong>Link Youtube</strong></td><td><input type="text" name="slide_2_youtube_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_2_youtube_content_show" value="1"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập MP4</h3></td></tr>
+									<tr><td><strong>Link MP4</strong></td><td><input type="text" name="slide_2_mp4_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_2_mp4_content_show" value="1"/></td></tr>
+								</table>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>3. Slider 3</legend> 
+							<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 10px 10px 10px;margin-top: -10px">
+								<table>
+									<tr><td><strong>Hiển thị?</strong></td><td><input type="checkbox" name="slide_3_show" value="1"/></td></tr>
+									<tr><td><strong>Chọn kiểu hiển thị?</strong></td><td>
+										<select name="slide_3_type">
+											<option value="type_image" selected>Hình ảnh</option>
+											<option value="type_youtube">Youtube</option>
+											<option value="type_mp4">Link .mp4 cấu hình file</option>
+										</select>
+									</td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập nội dung</h3></td></tr>
+									<tr><td><strong>Vị trí hiển thị?</strong></td><td><select type="text" name="slide_3_content_position">
+										<option value="left">Canh trái</option>
+										<option value="center">Canh giữa</option>
+										<option value="right">Canh phải</option>
+									</select></td></tr>
+									<tr><td><strong>Tiêu đề</strong></td><td><input type="text" name="slide_3_title"/></td></tr>
+									<tr><td><strong>Mô tả</strong></td><td><textarea class="min-width-360px" name="slide_3_desc"></textarea></td></tr>
+									<tr><td><strong>Tiêu đề Button</strong><p style="font-size: 12px;">(bỏ trống để ẩn)</p></td><td><input type="text" name="slide_3_btntitle"/></td></tr>
+									<tr><td><strong>Đường dẫn</strong></td><td><input type="text" name="slide_3_btnurl"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập hình ảnh</h3></td></tr>
+									<tr><td><strong>Hình ảnh Desktop</strong><p style="font-size:12px">(1920px x 800px)</p></td>
+										<td><input type="file" name="slide_3_d_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Hình ảnh Mobile</strong><p style="font-size:12px">(767px x 600px)</p></td>
+										<td><input type="file" name="slide_3_m_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Alt</strong></td><td><input type="text" name="slide_3_alt"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập Youtube</h3></td></tr>
+									<tr><td><strong>Link Youtube</strong></td><td><input type="text" name="slide_3_youtube_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_3_youtube_content_show" value="1"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập MP4</h3></td></tr>
+									<tr><td><strong>Link MP4</strong></td><td><input type="text" name="slide_3_mp4_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_3_mp4_content_show" value="1"/></td></tr>
+								</table>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>4. Slider 4</legend> 
+							<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 10px 10px 10px;margin-top: -10px">
+								<table>
+									<tr><td><strong>Hiển thị?</strong></td><td><input type="checkbox" name="slide_4_show" value="1"/></td></tr>
+									<tr><td><strong>Chọn kiểu hiển thị?</strong></td><td>
+										<select name="slide_4_type">
+											<option value="type_image" selected>Hình ảnh</option>
+											<option value="type_youtube">Youtube</option>
+											<option value="type_mp4">Link .mp4 cấu hình file</option>
+										</select>
+									</td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập nội dung</h3></td></tr>
+									<tr><td><strong>Vị trí hiển thị?</strong></td><td><select type="text" name="slide_4_content_position">
+										<option value="left">Canh trái</option>
+										<option value="center">Canh giữa</option>
+										<option value="right">Canh phải</option>
+									</select></td></tr>
+									<tr><td><strong>Tiêu đề</strong></td><td><input type="text" name="slide_4_title"/></td></tr>
+									<tr><td><strong>Mô tả</strong></td><td><textarea class="min-width-360px" name="slide_4_desc"></textarea></td></tr>
+									<tr><td><strong>Tiêu đề Button</strong><p style="font-size: 12px;">(bỏ trống để ẩn)</p></td><td><input type="text" name="slide_4_btntitle"/></td></tr>
+									<tr><td><strong>Đường dẫn</strong></td><td><input type="text" name="slide_4_btnurl"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập hình ảnh</h3></td></tr>
+									<tr><td><strong>Hình ảnh Desktop</strong><p style="font-size:12px">(1920px x 800px)</p></td>
+										<td><input type="file" name="slide_4_d_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Hình ảnh Mobile</strong><p style="font-size:12px">(767px x 600px)</p></td>
+										<td><input type="file" name="slide_4_m_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Alt</strong></td><td><input type="text" name="slide_4_alt"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập Youtube</h3></td></tr>
+									<tr><td><strong>Link Youtube</strong></td><td><input type="text" name="slide_4_youtube_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_4_youtube_content_show" value="1"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập MP4</h3></td></tr>
+									<tr><td><strong>Link MP4</strong></td><td><input type="text" name="slide_4_mp4_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_4_mp4_content_show" value="1"/></td></tr>
+								</table>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>5. Slider 5</legend> 
+							<div style="border-left: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;padding: 0 10px 10px 10px;margin-top: -10px">
+								<table>
+									<tr><td><strong>Hiển thị?</strong></td><td><input type="checkbox" name="slide_5_show" value="1"/></td></tr>
+									<tr><td><strong>Chọn kiểu hiển thị?</strong></td><td>
+										<select name="slide_5_type">
+											<option value="type_image" selected>Hình ảnh</option>
+											<option value="type_youtube">Youtube</option>
+											<option value="type_mp4">Link .mp4 cấu hình file</option>
+										</select>
+									</td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập nội dung</h3></td></tr>
+									<tr><td><strong>Vị trí hiển thị?</strong></td><td><select type="text" name="slide_5_content_position">
+										<option value="left">Canh trái</option>
+										<option value="center">Canh giữa</option>
+										<option value="right">Canh phải</option>
+									</select></td></tr>
+									<tr><td><strong>Tiêu đề</strong></td><td><input type="text" name="slide_5_title"/></td></tr>
+									<tr><td><strong>Mô tả</strong></td><td><textarea class="min-width-360px" name="slide_5_desc"></textarea></td></tr>
+									<tr><td><strong>Tiêu đề Button</strong><p style="font-size: 12px;">(bỏ trống để ẩn)</p></td><td><input type="text" name="slide_5_btntitle"/></td></tr>
+									<tr><td><strong>Đường dẫn</strong></td><td><input type="text" name="slide_5_btnurl"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập hình ảnh</h3></td></tr>
+									<tr><td><strong>Hình ảnh Desktop</strong><p style="font-size:12px">(1920px x 800px)</p></td>
+										<td><input type="file" name="slide_5_d_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Hình ảnh Mobile</strong><p style="font-size:12px">(767px x 600px)</p></td>
+										<td><input type="file" name="slide_5_m_image.png"/></td></tr>
+									</tr>
+									<tr><td><strong>Alt</strong></td><td><input type="text" name="slide_5_alt"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập Youtube</h3></td></tr>
+									<tr><td><strong>Link Youtube</strong></td><td><input type="text" name="slide_5_youtube_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_5_youtube_content_show" value="1"/></td></tr>
+									<tr><td colspan="2"><h3 style="padding: 7px 10px; border-top: none;">Thiết lập MP4</h3></td></tr>
+									<tr><td><strong>Link MP4</strong></td><td><input type="text" name="slide_5_mp4_url"/></td></tr>
+									<tr><td><strong>Hiển thị nội dung?</strong></td><td><input type="checkbox" name="slide_5_mp4_content_show" value="1"/></td></tr>
+								</table>
+							</div>
+						</fieldset>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</fieldset>
+</div>

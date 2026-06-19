@@ -1,0 +1,27 @@
+{% include 'article-image' with article:article %}
+<article class="item-article">
+	<div class="media-article zoomIn overflow-hidden">
+		<a href="{{ article.url }}" title="{{ article.title }}" aria-label="{{ article.title }}">
+			<img class="lazyload" loading="lazy" decoding="async" src="{{ imageUrl | product_img_url : 'grande'}}" alt="{{ article.title }}" width="350" height="350"/>
+		</a>	
+	</div>
+	<div class="info-article">
+		<div class="title-article">
+			<h4><a href="{{ article.url }}">{{ article.title }}</a></h4>
+		</div>
+		<div class="short-article"> 
+			{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}
+		</div>
+		<div class="action-article">
+			<time  datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+				<svg class="icon-svg" style="--icon-width: 16px;--icon-height: 16px;"><use xlink:href="#ic-calendar"></use></svg>
+				{{ article.published_at | date: '%d Tháng %m, %Y' }}</time>
+			<div class="view-article">
+				<a href="{{ article.url }}">
+					<span>Xem thêm</span>
+					<svg class="icon-svg" style="--icon-width: 10px;--icon-height: 10px;"><use xlink:href="#ic-db-chevron-right"></use></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</article>

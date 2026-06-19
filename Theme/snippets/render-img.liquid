@@ -1,0 +1,55 @@
+{%- assign alt = alt | default: shop.name -%}
+{%- assign w = w | default: w | default: "" -%}
+{%- assign h = h | default: h | default: "" -%}
+{%- assign w_mb = w_mobile | default: w | default: "" -%}
+{%- assign h_mb = h_mobile | default: h | default: "" -%}
+{%- assign loading = loading | default: "lazy" -%}
+{%- assign decoding = decoding | default: "async" -%}
+{%- assign fetchpriority = fetchpriority | default: "auto" -%}
+{%- assign className = class | default: "" -%}
+{%- assign sizes = sizes | default: "100vw" -%}
+
+{%- if type == "tiny" -%}
+  <img
+    {%- if className != "" %} class="{{ className }}"{% endif %}
+    src="{{ src | asset_url }}"
+    alt="{{ alt }}"
+    width="{{ w }}"
+    height="{{ h }}"
+    loading="{{ loading }}"
+    decoding="{{ decoding }}"
+    fetchpriority="{{ fetchpriority }}">
+{%- else -%}
+  <picture>
+    {%- if src_mobile != blank -%}
+      <source
+        media="(max-width: 767px)"
+        srcset="
+          {{ src_mobile | product_img_url: 'compact' | asset_url }} 240w,
+          {{ src_mobile | product_img_url: 'grande' | asset_url }} 600w,
+          {{ src_mobile | product_img_url: 'master' | asset_url }} 1200w
+        "
+        width="{{ w_mb }}"
+        height="{{ h_mb }}">
+    {%- endif -%}
+    <source
+      srcset="
+        {{ src | product_img_url: 'grande' | asset_url }} 600w,
+        {{ src | product_img_url: '1024x1024' | asset_url }} 1024w,
+        {{ src | product_img_url: 'master' | asset_url }} 2048w
+      "
+      width="{{ w }}"
+      height="{{ h }}">
+    <img
+      src="{{ src | product_img_url: 'grande' | asset_url }}"
+      sizes="{{ sizes }}"
+      alt="{{ alt }}"
+      loading="{{ loading }}"
+      decoding="{{ decoding }}"
+      fetchpriority="{{ fetchpriority }}"
+      width="{{ w }}"
+      height="{{ h }}"
+      {%if className != "" %} class="{{ className }}"{% endif %}
+      >
+  </picture>
+{%- endif -%}

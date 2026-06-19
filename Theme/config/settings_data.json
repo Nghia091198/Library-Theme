@@ -1,0 +1,131 @@
+{
+
+"current": {
+
+
+"use_logo": true,
+
+
+"logo.png": "",
+
+
+"favicon.png": "",
+
+
+"base_font": "Inter",
+
+
+"ico_favicon": "",
+
+
+"base_font_title": "Quicksand",
+
+
+"theme_color": "#1B2631",
+
+
+"theme_bg_color": "#FFFFFF",
+
+
+"theme_text_color": "#1B2631",
+
+
+"theme_text_hover": "#1B2631",
+
+
+"slide_container": "full_width",
+
+
+"slide_interval": "3",
+
+
+"slide_1_type": "type_image",
+
+
+"slide_1_d_image.png": "",
+
+
+"slide_1_m_image.png": "",
+
+
+"slide_1_youtube_url": "",
+
+
+"slide_1_mp4_url": "",
+
+
+"slide_2_show": true,
+
+
+"slide_2_type": "type_image",
+
+
+"slide_2_d_image.png": "",
+
+
+"slide_2_m_image.png": "",
+
+
+"slide_2_youtube_url": "",
+
+
+"slide_2_mp4_url": "",
+
+
+"slide_3_show": true,
+
+
+"slide_3_type": "type_image",
+
+
+"slide_3_d_image.png": "",
+
+
+"slide_3_m_image.png": "",
+
+
+"slide_3_youtube_url": "",
+
+
+"slide_3_mp4_url": "",
+
+
+"slide_4_show": false,
+
+
+"slide_4_type": "type_image",
+
+
+"slide_4_d_image.png": "",
+
+
+"slide_4_m_image.png": "",
+
+
+"slide_4_youtube_url": "",
+
+
+"slide_4_mp4_url": "",
+
+
+"slide_5_show": false,
+
+
+"slide_5_type": "type_image",
+
+
+"slide_5_d_image.png": "",
+
+
+"slide_5_m_image.png": "",
+
+
+"slide_5_youtube_url": "",
+
+
+"slide_5_mp4_url": ""
+
+},
+
+"presets": {}
+}

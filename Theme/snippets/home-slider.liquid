@@ -1,0 +1,84 @@
+{%- assign slider_1_type = settings.slide_1_type -%}
+{%- assign slider_1_content_pos = settings.slide_1_content_position -%}
+{%- capture slide_1_content-%}
+    <slidecontent {%if slider_1_content_pos == "left"%}left{%elsif slider_1_content_pos == "right"%}right{%else%}center{%endif%}>
+        {%-if settings.slide_1_title != blank-%}
+        <h2 class="slide-content__title">{{ settings.slide_1_title }}</h2>
+        {%- endif -%}
+        {%-if settings.slide_1_desc != blank-%}
+        <p class="slide-content__desc">{{ settings.slide_1_desc }}</p>
+        {%- endif -%}
+        {%-if settings.slide_1_btntitle != blank -%}
+        <div class="slide-content__btn">
+            <a button-effect class="btn btn-secondary" href="{{ settings.slide_1_btnlink }}" title="{{settings.slide_1_btntitle | strip}}">
+                {{settings.slide_1_btntitle}}
+                <span class="btn--icon">
+                    <svg class="icon-svg"><use xlink:href="#ic-arrow-45top-r"></use></svg>
+                </span>
+            </a>
+        </div>
+        {%- endif -%}   
+    </slidecontent>
+{%- endcapture -%}
+{%- capture slide_1_item -%}
+<div class="swiper-slide {{slider_1_type}}">
+    <div class="slide-banner-container">
+        <div class="slide-banner--hero position-relative">
+            {%case slider_1_type%}
+            {%when "type_image"%}
+                <slideimage>
+                    <a href="{{ settings.slide_1_btnurl }}" title="{{settings.slide_1_title | strip}}">
+                        {%include 'render-img' with src:'slide_1_d_image.png',src_mobile:'slide_1_m_image.png',class:"img-fluid",alt:settings.slide_1_alt | default: "Banner slide 1",w:"1920",h:"800",loading:"eager",decoding:"sync"%}
+                    </a>
+                </slideimage>
+            {%when "type_youtube"%}
+                <div class="video-wrapper">
+                    <slideyoutube>
+                        <iframe src="{{ settings.slide_1_youtube_url }}" frameborder="0" allowfullscreen></iframe>
+                    </slideyoutube>
+                </div>
+            {%when "type_mp4"%}
+                <slidevideo>
+                    <video controls>
+                        <source src="{{ settings.slide_1_mp4_url }}" type="video/mp4">
+                    </video>
+                </slidevideo>
+            {%endcase%}
+        </div>
+        <div class="slide-banner--content">
+            {{slide_1_content}}
+        </div>
+    </div> 
+</div>
+{%- endcapture -%}
+
+<section class="home-slider">
+    <style>
+        [hero-color] {
+        --color-hero-text: {{ settings.slide_text_color }};
+        --color-hero-btn-bg: {{ settings.slide_btn_bgcolor }};
+        --color-hero-btn-text: {{ settings.slide_btn_textcolor }};
+        --color-hero-btn-bg-hover: {{ settings.slide_btn_bgcolor }};
+        --color-hero-btn-text: {{ settings.slide_btn_textcolor }};
+        } 
+    </style>
+    <div class="full-width">
+        <heroslider hero-color>
+            <swiper-component
+                data-items="1"
+                data-xs="1" data-sm="1" data-md="1"
+                data-margin="24"
+                data-loop="true"
+                data-autoplay="false" data-speed="{{settings.slide_interval |  default: '3000'}}"
+                data-dots="false"
+                data-nav="true"
+                >
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                     {{slide_1_item}}
+                    </div>
+                </div>
+            </swiper-component>
+        </heroslider>
+    </div>
+</section>

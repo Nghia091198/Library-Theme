@@ -1,0 +1,130 @@
+{
+    "haravan": {
+        "checkout": {
+            "general": {
+                "cart_title": "Giỏ hàng",
+                "shipping_info_title": "Thông tin giao hàng",
+                "checkout_method_title": "Phương thức thanh toán",
+                "previous_step_shipping_info_title": "Quay lại thông tin giao hàng",
+                "next_step_checkout_method_title": "Tiếp tục",
+                "next_step_complete_order_title": "Tiếp tục",
+                "next_step_continue_shopping": "Tiếp tục",
+                "repayment": "Thanh toán lại"
+            },
+            "order_summary": {
+                "discount_title": "Mã giảm giá",
+                "discount_placeholder": "Mã giảm giá",
+                "discount_apply_button": "Sử dụng",
+                "discount_applied_title": "Mã giảm giá",
+                "discount_applied_success": "Mã khuyến mãi {{ discount_code }} được sử dụng thành công",
+                "subtotal_price_title": "Tạm tính",
+                "discount_shipping_fee_title": "Miễn phí vận chuyển",
+                "shipping_fee_title": "Phí vận chuyển",
+                "shipping_fee_free": "Miễn phí",
+                "total_price_title": "Tổng cộng"
+            },
+            "contact": {
+                "shipping_info_title": "<span class=\"hidden\">Thông tin giao hàng</span",
+                "question_has_account_title": "Bạn đã có tài khoản?",
+                "signin_title": "Đăng nhập",
+                "signout_title": "Đăng xuất",
+                "shipping_info_fullname_title": "Họ và tên",
+                "shipping_info_fullname_placeholder": "Họ và tên",
+                "shipping_info_email_title": "Email",
+                "shipping_info_email_placeholder": "Email",
+                "shipping_info_phone_title": "Số điện thoại",
+                "shipping_info_phone_placeholder": "Số điện thoại",
+                "shipping_info_address1_title": "Địa chỉ",
+                "shipping_info_address1_placeholder": "Địa chỉ nhận hàng mong muốn",
+                "shipping_info_customer_shipping_title": "Giao tận nơi",
+                "shipping_info_pick_at_location_title": "Nhận tại cửa hàng",
+                "shipping_info_province_title": "Tỉnh / thành",
+                "shipping_info_district_title": "Quận / huyện",
+                "shipping_info_ward_title": "Phường / xã",
+                "shipping_info_choose_province_title": "Chọn tỉnh / thành",
+                "shipping_info_choose_district_title": "Chọn quận / huyện",
+                "shipping_info_choose_ward_title": "Chọn phường / xã",
+                "shipping_info_filter_province_title": "Lọc tỉnh / thành",
+                "shipping_info_filter_district_title": "Lọc quận / huyện",
+                "shipping_info_filter_ward_title": "Lọc phường / xã",
+                "shipping_info_no_location": "Hiện tại chưa có bất kỳ thông tin cửa hàng nào"
+            },
+            "shipping_rate": {
+                "shipping_rate_title": "Phương thức vận chuyển",
+                "shipping_fee_free": "Miễn phí"
+            },
+            "checkout_method": {
+                "checkout_method_title": "Phương thức thanh toán"
+            },
+            "thank_you": {
+                "checkout_success_title": "Đặt hàng thành công",
+                "checkout_number": "Mã đơn hàng {{ order_number }}",
+                "thank_you_for_purchase": "Cám ơn bạn đã mua hàng!",
+                "send_email_checkout_info": "Chúng tôi đẵ gởi thông tin đơn hàng đến email {{ customer_email }}, vui lòng theo dõi đơn hàng.",
+                "checkout_info": "<span class=\"hidden\">Thông tin đơn hàng</span>",
+                "shipping_info_title": "Thông tin giao hàng",
+                "shipping_rate_title": "Phương thức vận chuyển",
+                "checkout_method_title": "Phương thức thanh toán",
+                "contact_us": "Liên hệ chúng tôi",
+                "contact_us_html": "Cần hỗ trợ? {{ contact_us }}"
+            },
+            "repayment": {
+                "repayment_title": "Thanh toán đơn hàng",
+                "do_repayment_title": "Thanh toán đơn hàng",
+                "checkout_number": "Mã đơn hàng {{ order_number }}",
+                "checkout_method_title": "Phương thức thanh toán",
+                "contact_us": "Liên hệ chúng tôi",
+                "contact_us_html": "Cần hỗ trợ? {{ contact_us }}"
+            },
+            "stock_problems": {
+                "stock_problems_title": "Vấn đề tồn kho",
+                "stock_problems_description": "Một số sản phẩm trong giỏ hàng của bạn đã không còn hợp lệ trong&nbsp;quá&nbsp;trình&nbsp;thanh&nbsp;toán.",
+                "cell_products_title": "Sản phẩm",
+                "cell_quantity_title": "Số lượng",
+                "cell_price_title": "Giá",
+                "cell_status_title": "Trạng thái",
+                "remove_from_cart": "Xóa khỏi giỏ hàng",
+                "status_label_soldout": "Hết hàng",
+                "status_label_reduced": "Giảm",
+                "return_to_cart": "Quay lại giỏ hàng",
+                "remove_button_label": "Xóa",
+                "accept_change_button_label": "Tiếp tục"
+            },
+            "field_errors": {
+                "email_blank": "Địa chỉ email không được trống",
+                "email_invalid": "Địa chỉ email không hợp lệ",
+                "email_too_long": "Địa chỉ email quá dài",
+                "fullname_blank": "Vui lòng nhập họ tên",
+                "phone_blank": "Số điện thoại không được trống",
+                "phone_invalid": "Số điện thoại không hợp lệ (độ dài từ 8 - 11 ký tự, không chứa ký tự đặc biệt và khoảng trắng)",
+                "phone_too_long": "Số điện thoại quá dài",
+                "address1_blank": "Địa chỉ không được trống",
+                "address1_too_long": "Địa chỉ quá dài",
+                "ward_blank": "Vui lòng chọn phường xã",
+                "dictrict_blank": "Vui lòng chọn quận huyện",
+                "province_blank": "Vui lòng chọn tỉnh thành",
+                "location_invalid": "Không tồn tại địa điểm này",
+                "discount_invalid": "Mã khuyến mãi {{ discount_code }} không khả dụng",
+                "discount_not_found": "Không tìm thấy mã giảm giá",
+                "discount_total_price_invalid": "Giá trị đơn hàng không đủ để áp dụng mã khuyến mãi",
+                "discount_expired_usenum": "Mã khuyến mãi {{ discount_code }} đã hết lượt sử dụng",
+                "discount_expired_date": "Mã khuyến mãi {{ discount_code }} đã hết hạn sử dụng",
+                "discount_not_enough_info_province": "Chưa áp dụng, cần thêm thông tin về vận chuyển",
+                "discount_not_allow_province": "Mã khuyến mãi không áp dụng cho khu vực của bạn",
+                "discount_not_allow_line_items": "Mã khuyến mãi {{ discount_code }} không áp dụng cho sản phẩm trong giỏ hàng",
+                "discount_not_enough_info_customer_group": "Chưa áp dụng, cần thêm thông tin về khách hàng",
+                "discount_not_allow_customer_group": "Mã khuyến mãi {{ discount_code }} không áp dụng cho nhóm khách hàng này",
+                "discount_not_enough_info_customer": "Chưa áp dụng, cần thêm thông tin về khách hàng",
+                "discount_not_allow_customer": "Mã khuyến mãi {{ discount_code }} không áp dụng cho khách hàng này",
+                "shipping_location_invalid": "Rất tiếc! Chúng tôi không hỗ trợ vận chuyển hàng đến địa điểm bạn chọn",
+                "shipping_no_location": "Không có chi nhánh nào còn hàng trong khu vực này. Vui lòng chọn khu vực khác hoặc đặt lại sản phẩm khác!",
+                "no_checkout_method": "Hiện tại chúng tôi không hỗ trợ bất kỳ phương thức thanh toán nào, vui lòng thử lại sau!"
+            }
+        }
+    },
+    "general": {
+        "search": {
+            "placeholder": "Tìm kiếm theo từ khoá"
+        }
+    }
+}

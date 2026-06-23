@@ -13,7 +13,7 @@
   {%-capture image_m-%}slide_{{i}}_m_image.png{%-endcapture-%}
 	{%-capture title-%}slide_{{i}}_title{%-endcapture-%}
   {%-capture desc-%}slide_{{i}}_desc{%-endcapture-%}
-	{%-capture content_pos-%}slide_{{i}}_pos{%-endcapture-%} 
+	{%-capture content_pos-%}slide_{{i}}_content_position{%-endcapture-%} 
 	{%-capture btn_title-%}slide_{{i}}_btntitle{%-endcapture-%}
   {%-capture btn_link-%}slide_{{i}}_btnurl{%-endcapture-%}
 	{%-capture alt-%}slide_{{i}}_alt{%-endcapture-%} 
@@ -30,13 +30,12 @@
                 </slideimage>
             {%when "type_youtube"%}
                 <div class="video-wrapper">
-                    <slideyoutube>
-                        <iframe src="{{ settings[link_youtube] }}" frameborder="0" allowfullscreen></iframe>
-                    </slideyoutube>
+                    <slide-youtube data-autoplay="true" data-muted="true" data-controls="false"
+										data-id="{{ settings[link_youtube] | split: '?v=' | last | split:'&' | first }}"></slide-youtube>
                 </div>
             {%when "type_mp4"%}
                 <slidevideo>
-                    <video controls>
+                    <video muted playsinline autoplay>
                         <source src="{{ settings[link_mp4] }}" type="video/mp4">
                     </video>
                 </slidevideo>
@@ -67,7 +66,7 @@
   {%-endif-%}
 {%- endfor -%}`;
 let navigationHtml = `<div class="swiper-pagination"></div>
-<div class="swiper-button-container">
+<div class="swiper-button-container" hidden>
   ${window.main.swiperNav._s_navigation}
 </div>`;
 el.querySelector('.swiper-wrapper').insertAdjacentHTML('beforeend', htmlSlide);
@@ -93,6 +92,9 @@ if (!customElements.get('swiper-component')) {
 }
 	if (!customElements.get('slide-progress')) {
   customElements.define('slide-progress', SlideProgressComponent);
+}
+	if (!customElements.get('slide-youtube')) {
+  customElements.define('slide-youtube', SlideYoutubeComponent);
 }
 	};
 	let recapchaRender = () => {

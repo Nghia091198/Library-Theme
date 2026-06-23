@@ -21,6 +21,21 @@ media-progress {
     --sp-color: var(--color-hero-text, #fff);
 }
 slide-progress[hidden] { display: none; }
+heroslider slide-youtube {
+    position:absolute;
+    inset:0   
+}
+heroslider .video-wrapper {
+    padding-bottom: 48%;
+}
+heroslider slide-youtube iframe {
+    position:absolute; 
+    height:56.25vw;
+    min-height:100vh;
+    transform: translate(-50%,-50%);
+    max-width: 100%;
+    left: 50%!important;top:50%!important;
+}
 .slide-progress__btn {
     position: relative;
     display: grid; place-items: center;
@@ -116,6 +131,27 @@ slidecontent.is-revealed .slide-content__btn {
 .slide-banner--content .slide-content__desc {
     color: var(--color-hero-text);
 }
+.slide-banner--content .slide-content__title {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
 .slide-banner--content .slide-content__desc {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.6rem;
+}
+.slide-content__btn {margin-top: 2rem}
+.slide-content__btn .btn{padding: 14px 28px}
+slidecontent[center] {margin-left:auto;margin-right:auto;text-align: center}
+slidecontent[right] {margin-left:auto;text-align: right}
+slidecontent[left] {margin-right:auto;text-align: left}
 
+
+@media (max-width: 991.9px) {
+    .slide-banner--content{padding:15px}
+    .slide-banner--content .slide-content__title{font-size: 2.6rem;margin-bottom: 1.6rem}
+    .slide-banner--content .slide-content__desc {font-size: 1.3rem;line-height:1.3}
+    .slide-content__btn{margin-top: 2rem}
+    .slide-content__btn .btn{padding: 10px 28px}
 }

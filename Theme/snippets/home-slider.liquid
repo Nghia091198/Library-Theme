@@ -33,13 +33,11 @@
                 </slideimage>
             {%when "type_youtube"%}
                 <div class="video-wrapper">
-                    <slideyoutube>
-                        <iframe src="{{ settings.slide_1_youtube_url }}" frameborder="0" allowfullscreen></iframe>
-                    </slideyoutube>
+                    <slide-youtube data-id="{{ settings.slide_1_youtube_url | split: '?v=' | last | split:'&' | first }}"></slide-youtube>
                 </div>
             {%when "type_mp4"%}
                 <slidevideo>
-                    <video controls>
+                    <video muted playsinline autoplay>
                         <source src="{{ settings.slide_1_mp4_url }}" type="video/mp4">
                     </video>
                 </slidevideo>
@@ -64,12 +62,12 @@
     </style>
     <div class="full-width">
         <heroslider hero-color>
-            <swiper-component
+            <swiper-component id="hero-swiper"
                 data-items="1"
                 data-xs="1" data-sm="1" data-md="1"
                 data-margin="24"
                 data-loop="true"
-                data-autoplay="false" data-speed="{{settings.slide_interval |  default: '3000'}}"
+                data-autoplay="true" data-speed="{{settings.slide_interval |  default: '3000'}}"
                 data-dots="false"
                 data-nav="true"
                 >

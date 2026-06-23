@@ -1,0 +1,638 @@
+
+{%- if settings.hcs_show -%}
+{%- assign hcs_items_count = 0 -%}
+{%- for i in (1..6) -%}
+  {%- capture hcs_show_key -%}hcs_{{ i }}_show{%- endcapture -%}
+  {%- if settings[hcs_show_key] -%}
+    {%- assign hcs_items_count = hcs_items_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<section class="tyt-hcs" data-items="{{ hcs_items_count }}">
+  <home-collection-scroll class="tyt-hcs__inner" data-total="{{ hcs_items_count }}">
+    <div class="tyt-hcs__bg"></div>
+
+    <div class="tyt-hcs__viewport">
+      <div class="tyt-hcs__content">
+        {%- if settings.hcs_title != blank or settings.hcs_desc != blank or settings.hcs_btn_title != blank -%}
+        <div class="tyt-hcs__header-wrap">
+          <div class="tyt-hcs__header">
+            {%- if settings.hcs_title != blank -%}
+            <h2 class="tyt-hcs__title">{{ settings.hcs_title }}</h2>
+            {%- endif -%}
+            {%- if settings.hcs_desc != blank -%}
+            <p class="tyt-hcs__desc">{{ settings.hcs_desc }}</p>
+            {%- endif -%}
+            {%- if settings.hcs_btn_title != blank -%}
+            <a button-effect class="btn btn-secondary tyt-hcs__btn"
+              href="{{ settings.hcs_btn_url | default: '/collections' }}"
+              title="{{ settings.hcs_btn_title | strip }}">
+              {{ settings.hcs_btn_title }}
+              <span class="btn--icon">
+                <svg class="icon-svg"><use xlink:href="#ic-arrow-45top-r"></use></svg>
+              </span>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endif -%}
+
+        {%- comment -%} Cards scroll list {%- endcomment -%}
+        <div class="tyt-hcs__scroll">
+          <div class="tyt-hcs__scroll-inner">
+            {%- for i in (1..6) -%}
+              {%- capture hcs_show_key  -%}hcs_{{ i }}_show{%- endcapture -%}
+              {%- capture hcs_image_key -%}hcs_{{ i }}_image{%- endcapture -%}
+              {%- capture hcs_alt_key   -%}hcs_{{ i }}_alt{%- endcapture -%}
+              {%- capture hcs_url_key   -%}hcs_{{ i }}_url{%- endcapture -%}
+              {%- capture hcs_label_key -%}hcs_{{ i }}_label{%- endcapture -%}
+
+              {%- if settings[hcs_show_key] -%}
+              {%- assign hcs_img   = settings[hcs_image_key] -%}
+              {%- assign hcs_alt   = settings[hcs_alt_key] | default: settings[hcs_label_key] | default: shop.name -%}
+              {%- assign hcs_url   = settings[hcs_url_key] | default: '/collections/all' -%}
+              {%- assign hcs_label = settings[hcs_label_key] -%}
+
+              <div class="tyt-hcs__card" style="--item-index: {{ i }}">
+                <div class="tyt-hcs__card-tilt">
+                  <div class="tyt-hcs__card-tilt-inner">
+                    <a href="{{ hcs_url }}" class="tyt-hcs__card-link" title="{{ hcs_label | strip }}">
+                      <div class="tyt-hcs__card-media">
+                        {%- if hcs_img != blank -%}
+                          {%- include 'render-img'
+                            with src: hcs_img,
+                            class: 'tyt-hcs__card-img',
+                            alt: hcs_alt,
+                            w: '800',
+                            h: '800',
+                            loading: 'lazy',
+                            decoding: 'async',
+                            sizes: '(min-width: 1150px) calc(min(430px, 40%)), (min-width: 480px) 50vw, 100vw'
+                          -%}
+                        {%- endif -%}
+                      </div>
+                      {%- if hcs_label != blank -%}
+                      <div class="tyt-hcs__card-content">
+                        <div button-effect class="tyt-hcs__card-label btn btn-primary">
+                          <span class="tyt-hcs__card-label-text">{{ hcs_label }}</span>
+                        </div>
+                      </div>
+                      {%- endif -%}
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </home-collection-scroll>
+</section>
+
+<style>
+/* ── Layout chính ── */
+.tyt-hcs {
+  --hcs-angle: 7deg;
+  --hcs-pb: 1.5rem;
+  --hcs-px: 1.5rem;
+  --hcs-card-w: min(calc(100vw - 3rem), 55rem);
+  --hcs-gap: 2.4rem;
+  max-width: 100%;
+  min-height: 230vh;
+  height: clamp(230vh, calc(50vh * var(--items, 6)), 1000vh);
+  padding-inline: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.tyt-hcs__inner {
+  display: contents;
+}
+
+/* ── Background sticky layer ── */
+.tyt-hcs__bg {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bkg_allpageColor2, #f5f6fa);
+  clip-path: inset(0 0 0 0 round 0px);
+  transition: clip-path 0.1s;
+}
+
+/* ── Viewport sticky ── */
+.tyt-hcs__viewport {
+  grid-area: 1 / 1 / 2 / 2;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+}
+
+/* ── Content flex container ── */
+.tyt-hcs__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--hcs-pb);
+  padding-block: var(--hcs-pb);
+  position: sticky;
+  inset-block: 3rem;
+  margin-block: 3rem;
+}
+
+/* ── Header wrap ── */
+.tyt-hcs__header-wrap {
+  flex: none;
+  padding-inline: var(--hcs-px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.tyt-hcs__header {
+  transform-origin: left top;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tyt-hcs__title {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-pageText, #333);
+}
+
+.tyt-hcs__desc {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--color-pageText, #333);
+  opacity: 0.7;
+}
+
+.tyt-hcs__btn {
+  margin-top: 2rem;
+  align-self: flex-start;
+}
+
+/* ── Scroll track ── */
+.tyt-hcs__scroll {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  padding-inline: 1.5rem;
+}
+
+/* Fade gradient ở rìa phải */
+.tyt-hcs__scroll::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset-block: -3rem auto;
+  inset-inline: auto 0;
+  width: min(34rem, 20%);
+  height: calc(100% + 6rem);
+  pointer-events: none;
+  background: linear-gradient(to right, transparent 0%, var(--bkg_allpageColor2, #f5f6fa) 100%);
+  opacity: var(--hcs-fade-opacity, 1);
+  transition: opacity 0.2s;
+}
+
+.tyt-hcs__scroll-inner {
+  display: flex;
+  width: max-content;
+  position: relative;
+}
+
+/* ── Cards ── */
+.tyt-hcs__card {
+  width: var(--hcs-card-w);
+  flex: none;
+  aspect-ratio: 1 / 1;
+}
+
+.tyt-hcs__card + .tyt-hcs__card {
+  margin-inline-start: var(--hcs-gap);
+}
+
+.tyt-hcs__card-tilt {
+  isolation: isolate;
+  perspective: 1000px;
+  perspective-origin: 100% 50%;
+  height: 100%;
+}
+
+.tyt-hcs__card-tilt-inner {
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(calc(1 / cos(var(--hcs-tilt, 0deg)))) rotateY(var(--hcs-tilt, 0deg));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+  border-radius: var(--rounded, 8px);
+  overflow: hidden;
+}
+
+.tyt-hcs__card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+
+.tyt-hcs__card-media {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tyt-hcs__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.tyt-hcs__card:hover .tyt-hcs__card-img {
+  transform: scale(1.05);
+}
+
+.tyt-hcs__card-content {
+  position: absolute;
+  z-index: 2;
+  inset-inline-start: 0;
+  bottom: 0;
+  width: 100%;
+  padding-inline: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.tyt-hcs__card-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tyt-hcs__card-label-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 24ch;
+}
+
+/* ── Responsive: tablet (768–1024) ── */
+@media (min-width: 768px) {
+  .tyt-hcs {
+    --hcs-px: 3rem;
+    --hcs-card-w: 45vw;
+  }
+  .tyt-hcs__scroll {
+    padding-inline: 3rem;
+  }
+}
+
+/* ── Responsive: ≤1024px — disable sticky scroll, dùng horizontal swipe ── */
+@media (max-width: 1024px) {
+  .tyt-hcs {
+    height: auto;
+    min-height: unset;
+  }
+  .tyt-hcs__bg {
+    height: auto;
+    position: relative;
+    clip-path: none !important;
+  }
+  .tyt-hcs__viewport {
+    position: relative;
+    height: auto;
+  }
+  .tyt-hcs__content {
+    position: relative;
+    inset-block: unset;
+    margin-block: 0;
+    padding-block: 2rem;
+    clip-path: none !important;
+    transform: none !important;
+  }
+  .tyt-hcs__header-wrap {
+    padding-inline: 1.5rem;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .tyt-hcs__scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    padding-inline: 1.5rem;
+    width: 100%;
+  }
+  .tyt-hcs__scroll-inner {
+    --hcs-angle: 0deg;
+    padding-inline: 1.5rem;
+  }
+  .tyt-hcs__card {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+  .tyt-hcs__card-tilt {
+    perspective: none;
+  }
+  .tyt-hcs__card-tilt-inner {
+    transform: none !important;
+  }
+}
+
+/* ── Desktop ≥1150px — full layout ngang ── */
+@media (min-width: 1150px) {
+  .tyt-hcs {
+    --hcs-px: 5rem;
+    --hcs-pb: 7.2rem;
+    --hcs-card-w: min(32vw, 75rem);
+  }
+  .tyt-hcs__content {
+    flex-direction: row;
+    gap: 2.5rem;
+  }
+  .tyt-hcs__header-wrap {
+    width: min(40vw, 50rem);
+    flex: none;
+    padding-inline: var(--hcs-px) 0;
+  }
+  .tyt-hcs__scroll {
+    padding-inline: 0;
+  }
+  .tyt-hcs__scroll::after {
+    opacity: var(--hcs-fade-opacity, 1);
+  }
+}
+</style>
+
+<script>
+class HomeCollectionScroll extends HTMLElement {
+  #abort     = null;
+  #cleanups  = [];
+  #scrollEl  = null;
+  #innerEl   = null;
+  #cards     = null;
+  #headerEl  = null;
+  #bgEl      = null;
+  #contentEl = null;
+  #resizeObs = null;
+
+  // Focus scroll state
+  #focusToken = 0;
+  #focusTimer = null;
+
+  connectedCallback() {
+    this.#scrollEl  = this.querySelector('.tyt-hcs__scroll');
+    this.#innerEl   = this.querySelector('.tyt-hcs__scroll-inner');
+    this.#headerEl  = this.querySelector('.tyt-hcs__header');
+    this.#bgEl      = this.closest('.tyt-hcs')?.querySelector('.tyt-hcs__bg');
+    this.#contentEl = this.querySelector('.tyt-hcs__content');
+    this.#cards     = [...this.querySelectorAll('.tyt-hcs__card-tilt')];
+
+    this.#init();
+    this.#observeResize();
+  }
+
+  disconnectedCallback() {
+    this.#cleanup();
+    this.#resizeObs?.disconnect();
+  }
+
+  // ── Kiểm tra desktop (hover device + width > 1024) ──────────────────────
+  get #isDesktop() {
+    return window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024;
+  }
+
+  // ── Reset styles về trạng thái non-desktop ───────────────────────────────
+  #resetStyles() {
+    const section = this.closest('.tyt-hcs');
+    section?.style.removeProperty('--items');
+    this.#contentEl?.style.removeProperty('clip-path');
+    this.#contentEl?.style.removeProperty('transform');
+    this.#headerEl?.closest('.tyt-hcs__header-wrap')?.style.removeProperty('transform');
+    this.#innerEl?.style.removeProperty('transform');
+    this.#headerEl?.style.removeProperty('opacity');
+    this.#headerEl?.style.removeProperty('transform');
+    this.#scrollEl?.style.removeProperty('--hcs-fade-opacity');
+    this.#bgEl?.style.removeProperty('clip-path');
+    this.#cards?.forEach(card => card.style.removeProperty('--hcs-tilt'));
+  }
+
+  // ── Tính vị trí scroll của section ──────────────────────────────────────
+  #getBounds() {
+    const section = this.closest('.tyt-hcs');
+    if (!section) return [0, 0];
+    const rect   = section.getBoundingClientRect();
+    const startY = window.scrollY + rect.top;
+    const endY   = window.scrollY + rect.bottom - window.innerHeight;
+    return [startY, endY];
+  }
+
+  #getProgress() {
+    const [startY, endY] = this.#getBounds();
+    const denom = Math.max(1, endY - startY);
+    return Math.min(1, Math.max(0, (window.scrollY - startY) / denom));
+  }
+
+  // ── Init desktop scroll animation ────────────────────────────────────────
+  #init() {
+    if (!this.#scrollEl || !this.#innerEl) return;
+
+    const scrollW = this.#scrollEl.clientWidth;
+    const innerW  = this.#innerEl.scrollWidth;
+
+    if (!this.#isDesktop || innerW <= scrollW) return;
+
+    const section = this.closest('.tyt-hcs');
+    section?.style.setProperty('--items', this.dataset.total || '6');
+
+    const n = this.#cards.length;
+
+    // Tính translateX target cho inner
+    const translateTarget = scrollW - innerW;
+
+    // Scroll handler
+    const onScroll = () => {
+      const p = this.#getProgress();
+
+      // Di chuyển inner theo scroll
+      if (this.#innerEl) {
+        this.#innerEl.style.transform = `translateX(${translateTarget * p}px)`;
+      }
+
+      // Tilt từng card theo progress
+      this.#cards.forEach((card, i) => {
+        const start = i / n;
+        const end   = (i + 0.5) / n;
+        let tiltPct = 1;
+        if (p <= start)      tiltPct = 1;
+        else if (p >= end)   tiltPct = 0;
+        else                 tiltPct = 1 - (p - start) / (end - start);
+        const tiltDeg = 7 * tiltPct;
+        card.style.setProperty('--hcs-tilt', `${tiltDeg}deg`);
+      });
+
+      // Fade gradient khi gần cuối
+      if (this.#scrollEl) {
+        const fadeOpacity = p >= 0.9 ? (p - 0.9) / 0.1 : 0;
+        this.#scrollEl.style.setProperty('--hcs-fade-opacity', String(1 - fadeOpacity));
+      }
+
+      // Animate header opacity + scale
+      if (this.#headerEl) {
+        const headerProgress = Math.min(1, p * (this.#getBounds()[1] - this.#getBounds()[0]) / 200);
+        const opacity = Math.max(0, 1 - headerProgress);
+        const scale   = Math.max(0.82, 1 - headerProgress * 0.18);
+        this.#headerEl.style.opacity   = String(opacity);
+        this.#headerEl.style.transform = `scale(${scale})`;
+      }
+
+      // Clip bg
+      if (this.#bgEl && this.#contentEl) {
+        const height = this.#contentEl.getBoundingClientRect().height;
+        section?.style.setProperty('--content-height', `${height}px`);
+        if (p > 0.05 && p < 0.95) {
+          const halfVh = 50;
+          const halfH  = height / 2;
+          const top    = `calc(${halfVh}vh - ${halfH}px)`;
+          const bot    = `calc(${halfVh}vh - ${halfH}px)`;
+          this.#bgEl.style.clipPath = `inset(${top} 30px ${bot} 3rem round var(--rounded, 8px))`;
+        } else if (p <= 0.05) {
+          this.#bgEl.style.clipPath = 'inset(0 0 0 0 round 0px)';
+        }
+      }
+    };
+
+    // Tabindex cho card links
+    this.#cards.forEach(card => {
+      const link = card.querySelector('.tyt-hcs__card-link');
+      if (link && !link.hasAttribute('tabindex') && !/^(A|BUTTON)$/.test(link.tagName)) {
+        link.setAttribute('tabindex', '0');
+      }
+    });
+
+    // Focus scroll
+    this.#abort = new AbortController();
+    const { signal } = this.#abort;
+
+    this.#scrollEl.addEventListener('focusin', e => {
+      const link = e.target.closest('.tyt-hcs__card-link');
+      if (!link || !this.#scrollEl.contains(link)) return;
+      this.#cancelFocus();
+      const card  = link.closest('.tyt-hcs__card-tilt');
+      const token = this.#focusToken;
+      this.#scrollFocusedCard(card, 0, token);
+    }, { capture: true, signal });
+
+    document.addEventListener('focusin', e => {
+      if (!this.contains(e.target)) this.#cancelFocus();
+    }, { capture: true, signal });
+
+    window.addEventListener('scroll', onScroll, { passive: true, signal });
+
+    // Chạy 1 lần để set trạng thái ban đầu
+    onScroll();
+
+    this.#cleanups.push(() => {
+      this.#abort?.abort();
+      this.#abort = null;
+    });
+  }
+
+  // ── Cleanup ──────────────────────────────────────────────────────────────
+  #cleanup(reset = true) {
+    this.#abort?.abort();
+    this.#abort = null;
+    this.#cancelFocus();
+    this.#cleanups.forEach(fn => fn?.());
+    this.#cleanups = [];
+    if (reset) this.#resetStyles();
+  }
+
+  // ── Resize observer — reinit khi window resize ───────────────────────────
+  #observeResize() {
+    let lastW = window.innerWidth;
+    this.#resizeObs = new ResizeObserver(() => {
+      const w = window.innerWidth;
+      if (w === lastW) return;
+      lastW = w;
+      this.#cleanup(false);
+      this.#resetStyles();
+      requestAnimationFrame(() => this.#init());
+    });
+    this.#resizeObs.observe(document.documentElement);
+  }
+
+  // ── Focus scroll helpers ─────────────────────────────────────────────────
+  #cancelFocus() {
+    this.#focusToken++;
+    if (this.#focusTimer) { clearTimeout(this.#focusTimer); this.#focusTimer = null; }
+  }
+
+  #scrollFocusedCard(card, attempt, token) {
+    if (token !== this.#focusToken || !card || !this.#scrollEl || !this.#innerEl) return;
+    const active = document.activeElement;
+    if (!active || !card.contains(active)) return;
+
+    const vwRect = this.#scrollEl.getBoundingClientRect();
+    const cr     = card.getBoundingClientRect();
+    const overscan = parseFloat(this.dataset.focusOverscan) || 144;
+    const rightThreshold = vwRect.width - overscan;
+
+    const leftOK  = cr.left  - vwRect.left  >= 0;
+    const rightOK = cr.right - vwRect.left  <= rightThreshold;
+    if (leftOK && rightOK) return;
+
+    let deltaPx = 0;
+    if (cr.left - vwRect.left < 0)             deltaPx = -(cr.left - vwRect.left) + 1;
+    else if (cr.right - vwRect.left > rightThreshold) deltaPx = rightThreshold - (cr.right - vwRect.left) - 1;
+    else return;
+
+    const innerW = this.#innerEl.getBoundingClientRect().width;
+    const span   = Math.max(0, innerW - vwRect.width);
+    if (!span) return;
+
+    const dP      = -deltaPx / span;
+    const pNow    = this.#getProgress();
+    const pTarget = Math.min(1, Math.max(0, pNow + dP));
+    const [s, e]  = this.#getBounds();
+    const targetY = Math.round(s + pTarget * Math.max(1, e - s));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (token !== this.#focusToken) return;
+    if (!document.activeElement || !card.contains(document.activeElement)) return;
+
+    window.scrollTo({ top: targetY, behavior: reduced ? 'auto' : 'smooth' });
+
+    if (attempt < 2) {
+      this.#focusTimer = setTimeout(() => {
+        if (token !== this.#focusToken) return;
+        const a = document.activeElement;
+        if (a && card.contains(a)) this.#scrollFocusedCard(card, attempt + 1, token);
+      }, reduced ? 0 : 360);
+    }
+  }
+}
+
+if (!customElements.get('home-collection-scroll')) {
+  customElements.define('home-collection-scroll', HomeCollectionScroll);
+}
+</script>
+
+{%- endif -%}
